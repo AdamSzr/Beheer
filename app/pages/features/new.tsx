@@ -10,6 +10,7 @@ import BorderComponent from "app/core/components/BorderComponent"
 import { Box, Button, Center, IconButton, Input, Switch, Td, Tr } from "@chakra-ui/react"
 import CircleCreateComponent from "app/core/components/CircleCreateComponent"
 import { AddIcon } from "@chakra-ui/icons"
+import { CreateFeature } from "app/auth/validations"
 
 const CreateFeatureRow = (props) => {
   const currentUser = useCurrentUser()
@@ -22,6 +23,9 @@ const CreateFeatureRow = (props) => {
   const create = async (e) => {
     e.preventDefault()
     const feature = new Feature(currentUser?.id as number, fname, value)
+    if (!CreateFeature(fname))
+      throw new Error("Feature name can not contain any other characters then [a-z][A-Z][0-9][~_-]")
+
     FeatureZod.parse(feature)
     const newf = await createFeatureMutation(feature)
     console.log({ feature: newf })

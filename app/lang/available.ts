@@ -83,8 +83,6 @@ pl.views[AppViews.home] = {
   },
 }
 
-// console.log(pl)
-
 const en = new Language()
 en.code2 = "en"
 en.lang = Lang.EN

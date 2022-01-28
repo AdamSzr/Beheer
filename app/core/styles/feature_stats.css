@@ -11,9 +11,11 @@ th {
   text-align: center !important;
 }
 
+/*
+
 td:not(:last-child),
 th:not(:last-child) {
-  border-right: dashed 1px black;
+   border-right: dashed 1px black; 
 }
 
 thead > tr > th {
@@ -23,3 +25,4 @@ thead > tr > th {
 tbody {
   background-color: #292b2c;
 }
+*/

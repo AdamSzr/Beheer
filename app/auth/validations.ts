@@ -31,3 +31,10 @@ export const ChangePassword = z.object({
   currentPassword: z.string(),
   newPassword: password,
 })
+
+export const CreateFeature = (name: string) => {
+  const acceptableChars =
+    `abcdefghijklmnopqrstuvwxyz` + `abcdefghijklmnopqrstuvwxyz`.toUpperCase() + `1234567890` + `~_-`
+  const charArr = acceptableChars.split("")
+  return name.split("").every((check) => charArr.some((available) => check == available))
+}

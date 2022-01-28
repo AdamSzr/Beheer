@@ -1,4 +1,4 @@
-import { useMutation, Router } from "blitz"
+import { useMutation, Router, Routes } from "blitz"
 
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
@@ -30,6 +30,7 @@ export const SignupForm = (props: SignupFormProps) => {
       if (ENABLE_SIGNUP) {
         Signup.parse({ email, password })
         await signupMutation({ email, password })
+        Router.push(Routes.FullScreen())
       }
     } catch (e) {
       console.log(e.issues)

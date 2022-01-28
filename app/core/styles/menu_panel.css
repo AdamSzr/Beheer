@@ -1,0 +1,35 @@
+#Menu {
+  background-color: #101010;
+  min-height: 5vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  border-bottom-left-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  font-family: "Courier New", monospace;
+}
+
+#Menu > * {
+  color: rgb(218, 218, 218);
+}
+
+#MenuPanelStack {
+  height: 5vh;
+  font-size: large;
+}
+
+#MenuPanelStack > p:hover {
+  text-decoration: underline;
+  text-decoration-color: gold;
+  cursor: pointer;
+}
+
+/* #MenuPanelStack > button {
+  font-size: large;
+  font-weight: 100;
+  color: rgb(136, 182, 30);
+} */
+
+/* #MenuPanelStack > button:hover {
+  background-color: inherit;
+  text-decoration: underline;
+} */

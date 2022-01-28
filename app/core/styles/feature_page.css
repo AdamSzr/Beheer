@@ -1,0 +1,28 @@
+.featureTableRow {
+  transition: background-color 0.5s;
+}
+
+.featureTableRow:hover {
+  background-color: #717d7e;
+  cursor: pointer;
+}
+
+table tbody:first-child td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+table tbody:first-child td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
+#SearchInput {
+  margin-bottom: 3vh;
+}
+
+#NewFeatureNameInput {
+  color: black;
+  background-color: #e5e8e8;
+}

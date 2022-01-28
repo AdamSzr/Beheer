@@ -1,0 +1,7 @@
+#JoinButtonPanel {
+  margin-bottom: 5vh;
+}
+
+#JoinButtonPanel > button:focus {
+  background-color: blue;
+}

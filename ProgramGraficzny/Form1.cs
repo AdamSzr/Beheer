@@ -8,7 +8,7 @@ namespace ProgramGraficzny
   public partial class Form1 : Form
   {
 
-    static private string SAVE_FEATURE_FLAG = "Task_11234_enable_img_save";
+    static private string SAVE_FEATURE_FLAG = "Adam_szreiber-1234~BBC";
 
     private Bitmap imgBase;
     private Bitmap imgCMY;
