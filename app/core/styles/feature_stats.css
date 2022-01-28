@@ -1,0 +1,25 @@
+#FeatureStatsTable {
+  background-color: #8d6868;
+}
+
+#TableContainer {
+  padding-top: 15vh;
+}
+
+td,
+th {
+  text-align: center !important;
+}
+
+td:not(:last-child),
+th:not(:last-child) {
+  border-right: dashed 1px black;
+}
+
+thead > tr > th {
+  color: beige !important;
+}
+
+tbody {
+  background-color: #292b2c;
+}

@@ -1,0 +1,16 @@
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.csprojAssemblyReference.cache
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.AssemblyInfoInputs.cache
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.AssemblyInfo.cs
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.csproj.CoreCompileInputs.cache
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.exe
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.deps.json
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.runtimeconfig.json
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.runtimeconfig.dev.json
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.dll
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ref\ProgramGraficzny.dll
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\bin\Debug\net5.0-windows\ProgramGraficzny.pdb
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.dll
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ref\ProgramGraficzny.dll
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.pdb
+C:\Users\School\Documents\Szkola\Sem_7\From_Scratch\FeatureControl\ProgramGraficzny\obj\Debug\net5.0-windows\ProgramGraficzny.genruntimeconfig.cache
