@@ -1,14 +1,14 @@
 import { Suspense, useState } from "react"
 import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getFeature from "app/features/queries/getFeatureByIdOrName"
-import deleteFeature from "app/features/mutations/deleteFeature"
+import getFeature from "app/core/queries/feature/getFeatureByIdOrName"
+import deleteFeature from "app/core/mutations/deleteFeature"
 import { Line } from "react-chartjs-2"
 import { CreateArray, GenerateRandomString, RandomInt } from "app/utils/base"
 import { CHART_COLORS, color, COLORS, namedColor } from "app/utils/chart/utils"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import { ExecutedWithStatus, PostExecDTO } from "../models/model"
+import { ExecutedWithStatus, PostExecDTO } from "app/core/models/model"
 import { Box } from "@chakra-ui/layout"
 import { Button, ButtonGroup } from "@chakra-ui/react"
 import {
@@ -40,9 +40,9 @@ const FeatureStats = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-           {CreateRow({title:"executed times",data:[1,2,3]})}
-           {CreateRow({title:"executed procentage",data:[1,2,3]})}
-           {CreateRow({title:"Total",data:["-","-",6]})}
+            {CreateRow({ title: "executed times", data: [1, 2, 3] })}
+            {CreateRow({ title: "executed procentage", data: [1, 2, 3] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
           </Tbody>
         </Table>
       </Box>
@@ -54,7 +54,9 @@ function CreateRow(row: DataRow) {
   return (
     <Tr>
       <Td>{row.title}</Td>
-      {row.data.map(i=> <Td key={RandomInt(0,10000)}>{i}</Td>)}
+      {row.data.map((i) => (
+        <Td key={RandomInt(0, 10000)}>{i}</Td>
+      ))}
     </Tr>
   )
 }

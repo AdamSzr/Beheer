@@ -1,4 +1,30 @@
 # Beheer
 Projekt do obrony pracy inżynierskiej - AMW
 
-blitz new Beher --no-git --npm --template=full --form=react-hook-form --languag=typescript
+blitz new Beheer --no-git --npm --template=full --form=react-hook-form --languag=typescript
+
+TODO:
+
+- naprawić router back, ponieważ teraz robi ✅
+- default stronkę za kazdym razem.✅
+- naprawić switch w tabeli features ✅
+- search zmienić - szukanie nie powinno być case sensitive ✅
+- Tabelka ze statystykami, dla feature Chart
+- zrobić pobieranie danych z Chart z zaznaczonego zakresu
+- dodać regex do search
+- wrocic do poprzedniej wersji - strony powinny być oddzielne. ✅
+- napisać stronkę error 404 ✅
+- nie będąc zalogowanym kieruj automatycznie do /join (feature page) ✅
+- napisać program który ma inny wystoj.
+- zrobić switch PL/ENG
+- zrobić dict PL:ENG
+- mouse icon kiedy najedziemy na menu
+- peace of paper na stronie About
+- ulepszyć scroll na feature chart page
+- sprawdzić czy w response mozna wysłać page
+- about page jest ograniczona scroll nie dziala na telu
+- z ujednolicic nazewnictwo zmiennych - bd - models
+- zrobic pobieranie danych - blob
+- zrobic wyswietlanie errorów
+- zrobić ustawianie listy feature od daty ✅
+- zrobić session storage dla language

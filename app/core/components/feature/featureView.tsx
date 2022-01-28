@@ -10,11 +10,11 @@ import {
   useMutation,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getFeatures from "app/features/queries/getFeatures"
+import getFeatures from "app/core/queries/feature/getFeatures"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { GenerateRandomString, RandomInt } from "app/utils/base"
-import { Feature } from "../models/model"
-import updateFeature from "app/features/mutations/updateFeature"
+import { Feature } from "app/core/models/model"
+import updateFeature from "app/core/mutations/updateFeature"
 
 import { Box, Center, GridItem, Text } from "@chakra-ui/layout"
 import {
@@ -24,8 +24,10 @@ import {
   Td,
   useControllableState,
   useControllableProp,
-   Input, IconButton,   Heading,
-   FormControl,
+  Input,
+  IconButton,
+  Heading,
+  FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText,
@@ -42,7 +44,6 @@ const FeatureView = (props) => {
 
   // const [controlableValue, setCtrlValue] = useControllableState({ defaultValue: feature.value })
 
-
   // console.log({feature})
 
   function deleteFeature(e: any, feature: Feature) {
@@ -50,7 +51,7 @@ const FeatureView = (props) => {
     console.log({ e, feature })
   }
 
-  function updateFeature(e: any,feature: Feature) {
+  function updateFeature(e: any, feature: Feature) {
     // console.log({feature})
     updateCb(feature, e)
   }
@@ -62,18 +63,17 @@ const FeatureView = (props) => {
       </Link>
       <Td width="fit-content">
         <Center>
-            <FormControl >
-              <Switch
-                id="switch_box"
-                size="md"
-                isChecked={switchInitState}
-                onChange={(e) => {
-                  // console.log({feature})
-                  updateFeature(e,feature)
-                }}
-              />
-            </FormControl>
-
+          <FormControl>
+            <Switch
+              id="switch_box"
+              size="md"
+              isChecked={switchInitState}
+              onChange={(e) => {
+                // console.log({feature})
+                updateFeature(e, feature)
+              }}
+            />
+          </FormControl>
         </Center>
       </Td>
       <Td>

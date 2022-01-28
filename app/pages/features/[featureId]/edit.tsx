@@ -1,23 +1,19 @@
 import { Suspense } from "react"
 import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getFeature from "app/features/queries/getFeatureByIdOrName"
-import updateFeature from "app/features/mutations/updateFeature"
-
-
+import getFeature from "app/core/queries/feature/getFeatureByIdOrName"
+import updateFeature from "app/core/mutations/updateFeature"
 
 const EditFeature = () => {
   const router = useRouter()
   const featureId = useParam("featureId", "number")
 
-  const feature = useQuery(getFeature,{id:featureId})
+  const feature = useQuery(getFeature, { id: featureId })
   const [updateFeatureMutation] = useMutation(updateFeature)
 
-  const Modify = () =>{
-    if(featureId)
-    updateFeatureMutation({id:featureId, value:!feature[0]?.value})
+  const Modify = () => {
+    if (featureId) updateFeatureMutation({ id: featureId, value: !feature[0]?.value })
   }
-
 
   return (
     <>
@@ -40,8 +36,6 @@ const EditFeaturePage: BlitzPage = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <EditFeature />
       </Suspense>
-
-
     </div>
   )
 }

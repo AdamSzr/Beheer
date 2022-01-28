@@ -1,7 +1,1 @@
-class AppConfig {
-  signup = {
-    enable: true,
-  }
-}
-
-export default new AppConfig()
+export const ENABLE_SIGNUP = true

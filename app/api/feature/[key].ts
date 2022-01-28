@@ -1,8 +1,8 @@
-import { PostExec } from "app/features/models/model"
+import { PostExec } from "app/core/models/model"
 import { Middleware } from "blitz"
 import db from "db"
-import saveExecDetails from "app/features/queries/saveExecDetails"
-import saveExecResult from "app/features/queries/saveExecResult"
+import saveExecDetails from "app/core/queries/feature/saveExecDetails"
+import saveExecResult from "app/core/queries/feature/saveExecResult"
 
 const GetFeatureValue: Middleware = async (req, res, next) => {
   if (req.method === "GET") {

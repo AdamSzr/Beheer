@@ -1,7 +1,7 @@
 import { resolver, NotFoundError } from "blitz"
 import { PrismaClient, Prisma } from "@prisma/client"
 import { z } from "zod"
-import { ExecuteDetails, PostExec, PostExecDTO } from "../models/model"
+import { ExecuteDetails, PostExec, PostExecDTO } from "app/core/models/model"
 import db from "db"
 
 export default resolver.pipe(async (execResult: PostExec) => {

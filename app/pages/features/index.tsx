@@ -10,18 +10,18 @@ import {
   Routes,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getFeatures from "app/features/queries/getFeatures"
+import getFeatures from "app/core/queries/feature/getFeatures"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { RandomInt } from "app/utils/base"
-import { Feature } from "../../features/models/model"
-import deleteFeature from "app/features/mutations/deleteFeature"
-import FeatureView from "./../../features/components/featureView"
+import { Feature } from "app/core/models/model"
+import deleteFeature from "app/core/mutations/deleteFeature"
+import FeatureView from "app/core/components/feature/featureView"
 import { Grid, Box } from "@chakra-ui/layout"
 import { IconButton } from "@chakra-ui/button"
 import { ArrowBackIcon } from "@chakra-ui/icons"
 import { Router } from "blitz"
-import createFeature from "app/features/mutations/createFeature"
-import updateFeature from "app/features/mutations/updateFeature"
+import createFeature from "app/core/mutations/createFeature"
+import updateFeature from "app/core/mutations/updateFeature"
 import { Input, Table, TableCaption, Tbody, Th, Thead, Tr } from "@chakra-ui/react"
 import NewFeaturePage from "./new"
 import CreateFeatureRow from "./new"
@@ -115,10 +115,17 @@ const FeatureList = (props) => {
 
   return (
     <>
-      <Input onChange={onSearchChange} placeholder={translation.inputSearch.placeholder} id="SearchInput" />
+      <Input
+        onChange={onSearchChange}
+        placeholder={translation.inputSearch.placeholder}
+        id="SearchInput"
+      />
       <Table variant="simple" size="sm" id="featureTable">
         <Tbody>
-          <CreateFeatureRow onCreateSuccess={updateAfterSuccessfulCreate} placeholder={translation.inputCreate.placeholder} />
+          <CreateFeatureRow
+            onCreateSuccess={updateAfterSuccessfulCreate}
+            placeholder={translation.inputCreate.placeholder}
+          />
           {features.map((f) => {
             return (
               <FeatureView
@@ -147,6 +154,5 @@ const FeaturesPage: BlitzPage = (props) => {
     </>
   )
 }
-
 
 export default FeaturesPage

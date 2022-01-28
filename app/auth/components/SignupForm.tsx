@@ -5,12 +5,13 @@ import { Signup } from "app/auth/validations"
 import React, { useState } from "react"
 import { Text, Center, Input, IconButton, FormControl, Box, Heading } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
-import AppConfig from "app/config"
+
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
+import { ENABLE_SIGNUP } from "app/config"
 
 type SignupFormProps = {
   onSuccess?: () => void
-  language:any
+  language: any
 }
 
 export const SignupForm = (props: SignupFormProps) => {
@@ -19,15 +20,14 @@ export const SignupForm = (props: SignupFormProps) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const language = props.language
-  console.log({language})
+  console.log({ language })
 
   const onSubmitCb = async (e) => {
     e.preventDefault()
     console.log("signup-submit-Click")
     console.log({ name, email, password })
-    console.log(AppConfig)
     try {
-      if (AppConfig.signup.enable) {
+      if (ENABLE_SIGNUP) {
         Signup.parse({ email, password })
         await signupMutation({ email, password })
       }
@@ -44,7 +44,7 @@ export const SignupForm = (props: SignupFormProps) => {
       </Heading>
       <form onSubmit={onSubmitCb}>
         <FormControl>
-                  <Input
+          <Input
             id="sing_up_email"
             type="email"
             onChange={(e) => {

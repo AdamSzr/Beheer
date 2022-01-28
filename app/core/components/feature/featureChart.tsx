@@ -1,14 +1,14 @@
 import { Suspense, useState } from "react"
 import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getFeature from "app/features/queries/getFeatureByIdOrName"
-import deleteFeature from "app/features/mutations/deleteFeature"
+import getFeature from "app/core/queries/feature/getFeatureByIdOrName"
+import deleteFeature from "app/core/mutations/deleteFeature"
 import { Line } from "react-chartjs-2"
 import { CreateArray, GenerateRandomString, RandomInt } from "app/utils/base"
 import { CHART_COLORS, color, COLORS, namedColor } from "app/utils/chart/utils"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import { ExecutedWithStatus, PostExecDTO } from "../models/model"
+import { ExecutedWithStatus, PostExecDTO } from "app/core/models/model"
 import { Box } from "@chakra-ui/layout"
 import { Button, ButtonGroup } from "@chakra-ui/react"
 import {
@@ -28,7 +28,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const FeatureChart = (props) => {
   let postExecDTO = props.postExecDTOS as PostExecDTO[]
-  postExecDTO = postExecDTO.filter(i => i.executedWithStatus == ExecutedWithStatus.FAILED)
+  postExecDTO = postExecDTO.filter((i) => i.executedWithStatus == ExecutedWithStatus.FAILED)
   postExecDTO = GetOnlyFromLastMonths(postExecDTO, 1)
   postExecDTO = SortFeaturesByDate(postExecDTO)
 
@@ -108,10 +108,9 @@ const FeatureChart = (props) => {
         grid: {
           color: "#424949",
           borderWidth: 1,
-
         },
         stacked: true,
-        beginAtZero:true,
+        beginAtZero: true,
         ticks: {
           stepSize: 1,
         },
@@ -151,18 +150,17 @@ const FeatureChart = (props) => {
       <Box padding="3vh" minHeight="100vh">
         {/*  TODO: make download on 2-nd click */}
         <Box>
-        <Chart
-          type="line"
-          data={data}
-          options={options as any}
-          id="feature_chart"
-          onClick={() => console.log(123)}
-        />
+          <Chart
+            type="line"
+            data={data}
+            options={options as any}
+            id="feature_chart"
+            onClick={() => console.log(123)}
+          />
         </Box>
         <Box>
           <FeatureStats data={data} />
         </Box>
-
       </Box>
     </>
   )
@@ -171,7 +169,6 @@ const FeatureChart = (props) => {
 function SortFeaturesByDate(featureList: PostExecDTO[]) {
   return featureList.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
 }
-
 
 function GetOnlyFromLastMonths(featureList: PostExecDTO[], months = 1): PostExecDTO[] {
   var lastMonthDate = DateAddDays(Date.now(), -30 * months)
@@ -193,10 +190,7 @@ function PrepareDataToPresent(featureList: PostExecDTO[]) {
 
 function ParseStringToDate(dateString: string): Date {
   const [day, month, year] = dateString.split(".") as any
-  return new Date(
-  Number(year),
-  Number(month) - 1,
-  Number(day))
+  return new Date(Number(year), Number(month) - 1, Number(day))
 }
 
 function GetSelectedRange(dto: PostExecDTO[], from: string | undefined, to: string): PostExecDTO[] {
@@ -209,7 +203,7 @@ function GetSelectedRange(dto: PostExecDTO[], from: string | undefined, to: stri
   // console.log({dateFrom,dateTo})
   const items = dto.filter((item) => {
     const time = item.createdAt
-    return time >= dateFrom && time<dateTo
+    return time >= dateFrom && time < dateTo
   })
   // console.log(items)
   return items
@@ -227,8 +221,8 @@ function GetChartPointData(event, elements, chart): ChartPointData {
 }
 
 class ChartPointData {
-  label:string
-  value:number
+  label: string
+  value: number
 
   parse = () => this.label + " " + this.value
 }
