@@ -17,11 +17,13 @@ import Join from "app/auth/pages/join"
 import { AppDefaultLanguages, AppViews, Lang } from "app/lang/available"
 import { useState } from "react"
 import lang from "app/auth/mutations/lang"
+import { DEFAULT_LANGUAGE } from "app/config"
+import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
 
-  const [currentLang, setCurrentLang] = useState(Lang.PL)
+  const [currentLang, setCurrentLang] = useState(DEFAULT_LANGUAGE)
   const [language, setLang] = useState(AppDefaultLanguages[currentLang])
   const langObj = { get: getLanguageFor, update: updateLanguage }
   console.log({ language })
@@ -64,19 +66,21 @@ export default function App({ Component, pageProps }: AppProps) {
       return <Join lang={langObj}/>
     } else if (error instanceof AuthorizationError) {
       return (
-        <ErrorComponent
-          error={error}
-          statusCode={error.statusCode}
-          title="Sorry, you are not authorized to access this"
-        />
+        <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />
+        // <ErrorComponent
+        //   error={error}
+        //   statusCode={error.statusCode}
+        //   title="Sorry, you are not authorized to access this"
+        // />
       )
     } else {
       return (
-        <ErrorComponent
-          error={error}
-          statusCode={error.statusCode || 400}
-          title={error.message || error.name}
-        />
+        <ErrorViewComponent error={error} statusCode={error.statusCode || 400} title={error.message || error.name} />
+        // <ErrorComponent
+        //   error={error}
+        //   statusCode={error.statusCode || 400}
+        //   title={error.message || error.name}
+        // />
       )
     }
   }

@@ -5,6 +5,7 @@
 @import "join_page.css";
 @import "chart_page.css";
 @import "user_settings_page.css";
+@import "error_view.css";
 
 #BackgroundBoard {
   min-height: 100vh;
@@ -19,11 +20,11 @@
   padding-top: 2vh;
   padding-bottom: 2vh;
 }
-/* 
+/*
 #BackgroundBoard > * {
   font-family: monospace;
 } */
-/* 
+/*
 #featureTable {
   font-size: x-large;
 } */
@@ -33,5 +34,5 @@ tbody tr:first-child {
 
 /* #NewFeatureNameInput::placeholder {
   color: rgba(0, 0, 0, 0.452);
-  opacity: 1; 
+  opacity: 1;
 } */

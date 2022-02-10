@@ -6,10 +6,11 @@ import { Center } from "@chakra-ui/layout"
 import { Input, FormControl, Box, Button, IconButton, Text, Heading } from "@chakra-ui/react"
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons"
 import { User } from "@prisma/client"
+import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
-  language:any
+  language: any
 }
 
 export const LoginForm = (props: LoginFormProps) => {
@@ -17,19 +18,20 @@ export const LoginForm = (props: LoginFormProps) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorView, setErrorView] = useState("" as any)
   const onLoginSuccess = props.onSuccess as any
   const language = props.language
   // console.log({language})
-
 
   const onSubmitCb = async (e) => {
     e.preventDefault()
     try {
       Login.parse({ email, password })
-      const user = await loginMutation({ email, password }) as User;
+      const user = (await loginMutation({ email, password })) as User
       onLoginSuccess(user)
     } catch (e) {
-      console.log(e.issues)
+      setErrorView(true)
+      console.log("error")
     }
   }
 
@@ -41,11 +43,23 @@ export const LoginForm = (props: LoginFormProps) => {
   }
 
   return (
-
     <Box>
       <Heading as="h1" size="4xl" marginBottom={10} textColor="white" textAlign="center">
         {language.text}
       </Heading>
+      {errorView ? (
+        <ErrorViewComponent
+          title="loginError"
+          error={"please sign up"}
+          statusCode={500}
+          closeCb={() => {
+            setErrorView(false)
+          }}
+        />
+      ) : (
+        <></>
+      )}
+
       <form onSubmit={onSubmitCb}>
         <FormControl id="loginForm">
           <Input

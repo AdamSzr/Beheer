@@ -11,6 +11,7 @@ import { Input, Table, TableCaption, Th, Thead, Tr } from "@chakra-ui/react"
 import { useState } from "react"
 import { AppViews } from "app/lang/available"
 
+
 const Join: BlitzPage = (props:any) => {
     console.log({props})
     const router = useRouter()

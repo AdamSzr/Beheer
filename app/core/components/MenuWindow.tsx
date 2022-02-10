@@ -1,5 +1,14 @@
 import { Suspense } from "react"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Router, useMutation } from "blitz"
+import {
+  Head,
+  Link,
+  usePaginatedQuery,
+  useRouter,
+  BlitzPage,
+  Routes,
+  Router,
+  useMutation,
+} from "blitz"
 import Layout from "app/core/layouts/Layout"
 import BorderComponent from "app/core/components/BorderComponent"
 import {
@@ -19,7 +28,7 @@ import {
   UnorderedList,
   HStack,
   Code,
-  Switch
+  Switch,
 } from "@chakra-ui/react"
 import AppSettings from "app/core/settings"
 import { QuestionIcon } from "@chakra-ui/icons"
@@ -30,7 +39,7 @@ import { useState } from "react"
 import SettingsPage from "../../pages/settings"
 import logout from "app/auth/mutations/logout"
 import { AppViews } from "app/lang/available"
-
+import { MULTI_LANGUAGE } from "app/config"
 
 const MenuWindow = (props) => {
   const [logoutMutation] = useMutation(logout)
@@ -43,32 +52,25 @@ const MenuWindow = (props) => {
   // console.log(insideComponent)
 
   async function LogoutUser() {
-    await logoutMutation();
-    Router.push("/join");
+    await logoutMutation()
+    Router.push("/join")
   }
 
   return (
     <Box id="BackgroundBoard">
       <Box id="Menu">
         <HStack id="MenuPanelStack">
-          <Text onClick={() => Router.push("/features")} >{translation.features.name}</Text>
-          <Text onClick={() => Router.push("/settings")} >{translation.settings.name}</Text>
-          <Text onClick={() =>  Router.push("/about")} >{translation.about.name}</Text>
-          <Text onClick={LogoutUser}>
-          {translation.logout.name}
-          </Text>
-          <Switch onChange={updateLang}>
-
-          </Switch>
+          <Text onClick={() => Router.push("/features")}>{translation.features.name}</Text>
+          <Text onClick={() => Router.push("/settings")}>{translation.settings.name}</Text>
+          <Text onClick={() => Router.push("/about")}>{translation.about.name}</Text>
+          <Spacer />
+          <Text id="LogoutButton" onClick={LogoutUser}>{translation.logout.name}</Text>
+          {MULTI_LANGUAGE ? <Switch onChange={updateLang} /> : ""}
         </HStack>
       </Box>
-      <Box id="Content">
-          {insideComponent}
-      </Box>
-    </Box >
+      <Box id="Content">{insideComponent}</Box>
+    </Box>
   )
 }
-
-
 
 export default MenuWindow

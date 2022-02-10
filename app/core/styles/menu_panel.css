@@ -23,13 +23,12 @@
   cursor: pointer;
 }
 
-/* #MenuPanelStack > button {
-  font-size: large;
-  font-weight: 100;
-  color: rgb(136, 182, 30);
-} */
+#LogoutButton {
+  background-color: tomato;
+  border-radius: 6px;
+  padding: 2px 2px 2px 2px;
+}
 
-/* #MenuPanelStack > button:hover {
-  background-color: inherit;
-  text-decoration: underline;
-} */
+#LogoutButton:hover {
+  background-color: rgba(255, 17, 17, 0.671);
+}
