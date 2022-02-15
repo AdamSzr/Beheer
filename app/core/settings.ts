@@ -10,6 +10,6 @@ const AppSettings = {
     color: "#000000",
   },
   defaultHorizontalMargin: "10vw",
-  errorCloseTimeout: 3_000,
+  errorCloseTimeout: 5_000,
 }
 export default AppSettings

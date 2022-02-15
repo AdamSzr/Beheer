@@ -7,7 +7,8 @@ import { Text, Center, Input, IconButton, FormControl, Box, Heading } from "@cha
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
-import { ENABLE_SIGNUP } from "app/config"
+import {  PasswordValidator, SIGNUP_PASSW_VALIDATION } from "app/config"
+import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -19,6 +20,7 @@ export const SignupForm = (props: SignupFormProps) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorView, setErrorView] = useState("" as any)
   const language = props.language
   console.log({ language })
 
@@ -27,14 +29,18 @@ export const SignupForm = (props: SignupFormProps) => {
     console.log("signup-submit-Click")
     console.log({ name, email, password })
     try {
-      if (ENABLE_SIGNUP) {
-        Signup.parse({ email, password })
-        await signupMutation({ email, password })
-        Router.push(Routes.FullScreen())
-      }
+      Signup.parse({ email, password })
+
+      if (SIGNUP_PASSW_VALIDATION)
+        if (!PasswordValidator(password)) {
+          throw new Error("Password does not match validation.")
+        }
+
+      await signupMutation({ email, password })
+      Router.push(Routes.FullScreen())
     } catch (e) {
-      console.log(e.issues)
-      // return ()
+      setErrorView(true)
+      console.log("sign-up error")
     }
   }
 
@@ -43,6 +49,18 @@ export const SignupForm = (props: SignupFormProps) => {
       <Heading as="h1" size="4xl" marginBottom={10} textColor="white" textAlign="center">
         {language.text}
       </Heading>
+      {errorView ? (
+        <ErrorViewComponent
+          title="Błąd rejestracji"
+          error={"Upewnij się, że hasło ma od 8 do 30 znaków, i zawiera conajmniej 1 małą literę, wielką, i znak"}
+          statusCode={501}
+          closeCb={() => {
+            setErrorView(false)
+          }}
+        />
+      ) : (
+        <></>
+      )}
       <form onSubmit={onSubmitCb}>
         <FormControl>
           <Input

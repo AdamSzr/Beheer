@@ -66,21 +66,21 @@ export default function App({ Component, pageProps }: AppProps) {
       return <Join lang={langObj}/>
     } else if (error instanceof AuthorizationError) {
       return (
-        <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />
-        // <ErrorComponent
-        //   error={error}
-        //   statusCode={error.statusCode}
-        //   title="Sorry, you are not authorized to access this"
-        // />
+        // <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />
+        <ErrorComponent
+          error={error}
+          statusCode={error.statusCode}
+          title="Sorry, you are not authorized to access this"
+        />
       )
     } else {
       return (
-        <ErrorViewComponent error={error} statusCode={error.statusCode || 400} title={error.message || error.name} />
-        // <ErrorComponent
-        //   error={error}
-        //   statusCode={error.statusCode || 400}
-        //   title={error.message || error.name}
-        // />
+        // <ErrorViewComponent error={error} statusCode={error.statusCode || 400} title={error.message || error.name} />
+        <ErrorComponent
+          error={error}
+          statusCode={error.statusCode || 400}
+          title={error.message || error.name}
+        />
       )
     }
   }

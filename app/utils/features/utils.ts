@@ -1,4 +1,4 @@
-import { Feature } from "app/features/models/model"
+import { Feature } from "app/core/models/model"
 
 export const sortFeaturesByDateFromLatestToOldest = (listOfFeatures: Feature[]): Feature[] => {
   const sorted = listOfFeatures.sort((item1, item2) => {

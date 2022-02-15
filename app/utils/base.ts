@@ -65,3 +65,8 @@ export function RandomDoubleWithNegativ(min, max) {
 export function Randomfrom(array: any[]) {
   return array[RandomInt(0, array.length)]
 }
+
+export function StringHaveLowerCase(text: string): boolean {
+  const alphabet = "abcdefghijklmnouprstwxyz"
+  return text.split("").some((char) => alphabet.split("").some((item) => char === item))
+}

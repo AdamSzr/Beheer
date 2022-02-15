@@ -49,8 +49,8 @@ export const LoginForm = (props: LoginFormProps) => {
       </Heading>
       {errorView ? (
         <ErrorViewComponent
-          title="loginError"
-          error={"please sign up"}
+          title="Błąd logowania"
+          error={"Nie ma takiego użytkownika"}
           statusCode={500}
           closeCb={() => {
             setErrorView(false)
