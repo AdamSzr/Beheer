@@ -6,6 +6,7 @@
 @import "user_settings_page.css";
 @import "error_view.css";
 @import "basic_forms.css";
+@import "features_new.css";
 
 #BackgroundBoard {
   min-height: 100vh;

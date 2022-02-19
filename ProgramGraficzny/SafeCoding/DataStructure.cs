@@ -10,7 +10,7 @@ namespace SafeCoding
 
   class ExecutionResult
   {
-    public string FlagKey { get; set; }
+    public string FlagUuid { get; set; }
     public bool FlagValue { get; set; }
     public Execution ReplaceExecution { get; set; }
     public Execution WithExecution { get; set; }

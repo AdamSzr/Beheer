@@ -1,0 +1,7 @@
+#CreateFeatureLink {
+  color: rgb(184, 184, 238) !important;
+  margin-bottom: 15px;
+}
+
+#CreateFeatureLink:focus {
+}

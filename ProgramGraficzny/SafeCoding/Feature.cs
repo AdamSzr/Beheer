@@ -4,7 +4,7 @@ namespace SafeCoding
 {
   class Feature
   {
-    public string key { get; private set; }
+    public string uuid { get; private set; }
     public bool value { get; private set; }
 
     private Action oldCode { get; set; }
@@ -13,12 +13,12 @@ namespace SafeCoding
 
     private ControlFeatureServerConnector connector { get; set; }
 
-    public static Feature ControledBy(string key)
+    public static Feature ControledBy(string uuid)
     {
       return new Feature()
       {
-        key = key,
-        connector = new ControlFeatureServerConnector(key)
+        uuid = uuid,
+        connector = new ControlFeatureServerConnector(uuid)
       };
     }
 
@@ -38,7 +38,7 @@ namespace SafeCoding
     private void Execute()
     {
       ExecutionResult result = new();
-      result.FlagKey = key;
+      result.FlagUuid = uuid;
       result.FlagValue = connector.Download().value;
       if (result.FlagValue)
       {

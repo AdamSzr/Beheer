@@ -6,13 +6,14 @@ import saveExecResult from "app/core/queries/feature/saveExecResult"
 
 const GetFeatureValue: Middleware = async (req, res, next) => {
   if (req.method === "GET") {
-    console.log(req.query.key)
+    console.log(req.query.uuid)
     var x = await db.feature.findFirst({ where: { name: req.query.key as string } })
     console.log(x?.value ? x?.value : false)
     return res.status(202).json({ value: x?.value ? x?.value : false })
   }
 
   if (req.method === "POST") {
+    console.log({ body: req.body })
     const execResult = JSON.parse(req.body) as PostExec
 
     console.log({ execResult })

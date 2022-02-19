@@ -7,8 +7,7 @@ namespace ProgramGraficzny
   using SafeCoding;
   public partial class Form1 : Form
   {
-
-    static private string SAVE_FEATURE_FLAG = "Adam_szreiber-1234~BBC";
+    private readonly string FLAG_123ABC123 = "3f4f772d-e742-4082-9c9e-d7f4588170db";
 
     private Bitmap imgBase;
     private Bitmap imgCMY;
@@ -147,7 +146,7 @@ namespace ProgramGraficzny
     private void btnSave_Click(object sender, EventArgs e)
     {
 
-      Feature.ControledBy(SAVE_FEATURE_FLAG)
+      Feature.ControledBy(FLAG_123ABC123)
       .Replace(() =>
       {
         string message = "This functionality is not ready.";

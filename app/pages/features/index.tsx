@@ -1,14 +1,5 @@
 import { Suspense, useState } from "react"
-import {
-  Head,
-  Link,
-  usePaginatedQuery,
-  useRouter,
-  useMutation,
-  useQuery,
-  BlitzPage,
-  Routes,
-} from "blitz"
+import { Head, usePaginatedQuery, useRouter, useMutation, useQuery, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getFeatures from "app/core/queries/feature/getFeatures"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -16,13 +7,13 @@ import { RandomInt } from "app/utils/base"
 import { Feature } from "app/core/models/model"
 import deleteFeature from "app/core/mutations/deleteFeature"
 import FeatureView from "app/core/components/feature/featureView"
-import { Grid, Box } from "@chakra-ui/layout"
+import { Grid, Box, Center } from "@chakra-ui/layout"
 import { IconButton } from "@chakra-ui/button"
 import { ArrowBackIcon } from "@chakra-ui/icons"
 import { Router } from "blitz"
 import createFeature from "app/core/mutations/createFeature"
 import updateFeature from "app/core/mutations/updateFeature"
-import { Input, Table, TableCaption, Tbody, Th, Thead, Tr } from "@chakra-ui/react"
+import { Input, Table, TableCaption, Tbody, Th, Thead, Tr, Text, Link } from "@chakra-ui/react"
 import NewFeaturePage from "./new"
 import CreateFeatureRow from "./new"
 import MenuWindow from "app/core/components/MenuWindow"
@@ -122,10 +113,10 @@ const FeatureList = (props) => {
       />
       <Table variant="simple" size="sm" id="featureTable">
         <Tbody>
-          <CreateFeatureRow
+          {/* <CreateFeatureRow
             onCreateSuccess={updateAfterSuccessfulCreate}
             placeholder={translation.inputCreate.placeholder}
-          />
+          /> */}
           {features.map((f) => {
             return (
               <FeatureView
@@ -148,6 +139,13 @@ const FeaturesPage: BlitzPage = (props) => {
     <>
       <Suspense fallback={<div>Wait. Loading...</div>}>
         <MenuWindow lang={lang}>
+          <Center>
+            <Text id="CreateFeatureLink">
+              <Link href={"/features/new"}>
+                Jeśli nie ma tutaj Twojej funkcjonalności, stworz ją.
+              </Link>
+            </Text>
+          </Center>
           <FeatureList lang={lang} />
         </MenuWindow>
       </Suspense>

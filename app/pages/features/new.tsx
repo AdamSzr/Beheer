@@ -72,49 +72,48 @@ const CreateFeatureRow = (props) => {
 }
 
 const NewFeaturePage: BlitzPage = (props: any) => {
-  const currentUser = useCurrentUser()
-  const createFeatureSuccessCb = props.onCreateSuccess
-  const [createFeatureMutation] = useMutation(createFeature)
+  // const currentUser = useCurrentUser()
+  // const createFeatureSuccessCb = props.onCreateSuccess
+  // const [createFeatureMutation] = useMutation(createFeature)
 
-  const [fname, setFname] = useState("")
-  const [value, setValue] = useState(false)
+  // const [fname, setFname] = useState("")
+  // const [value, setValue] = useState(false)
 
-  const create = async (e) => {
-    e.preventDefault()
-    const feature = new Feature(currentUser?.id as number, fname, value)
-    console.log({ feature })
-    FeatureZod.parse(feature)
-    const newf = await createFeatureMutation(feature)
-    createFeatureSuccessCb(newf)
-    console.log(newf)
-  }
+  // const create = async (e) => {
+  //   e.preventDefault()
+  //   const feature = new Feature(currentUser?.id as number, fname, value)
+  //   console.log({ feature })
+  //   FeatureZod.parse(feature)
+  //   const newf = await createFeatureMutation(feature)
+  //   createFeatureSuccessCb(newf)
+  //   console.log(newf)
+  // }
 
-  return (
-    <Tr>
-      <Td>
-        <Input type="text" size="sm" variant="outline" onChange={(e) => setFname(e.target.value)} />
-      </Td>
-      <Td></Td>
-      <Td>
-        <IconButton
-          icon={<AddIcon />}
-          onClick={async (e) => {
-            await create(e)
-          }}
-          textColor="black"
-          colorScheme="green"
-          aria-label=""
-        />{" "}
-      </Td>
-      {/* <h1>Create New Feature</h1>
-      <Suspense fallback="Loading">
-        <NewFeatureForm />
-      </Suspense> */}
-    </Tr>
-  )
+  return "nothink"
+  // <Tr>
+  //   <Td>
+  //     <Input type="text" size="sm" variant="outline" onChange={(e) => setFname(e.target.value)} />
+  //   </Td>
+  //   <Td></Td>
+  //   <Td>
+  //     <IconButton
+  //       icon={<AddIcon />}
+  //       onClick={async (e) => {
+  //         await create(e)
+  //       }}
+  //       textColor="black"
+  //       colorScheme="green"
+  //       aria-label=""
+  //     />{" "}
+  //   </Td>
+  //   {/* <h1>Create New Feature</h1>
+  //   <Suspense fallback="Loading">
+  //     <NewFeatureForm />
+  //   </Suspense> */}
+  // </Tr>
 }
 
-NewFeaturePage.authenticate = true
+NewFeaturePage.authenticate = { redirectTo: "/login" }
 NewFeaturePage.getLayout = (page) => <Layout title={"Create New Feature"}>{page}</Layout>
 
-export default CreateFeatureRow
+export default NewFeaturePage
