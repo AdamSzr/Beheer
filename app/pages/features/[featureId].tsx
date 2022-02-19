@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react"
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import { PostExecDTO } from "app/core/models/model"
+import { ENABLE_SAVING_CHART_DATA } from "app/config"
 
 const Feature = (props) => {
   const featureId = useParam("featureId", "number")
@@ -54,6 +55,8 @@ function getFormatedDate(dto: PostExecDTO): string {
 }
 
 function downloadData(data: PostExecDTO[]) {
+  if (!ENABLE_SAVING_CHART_DATA) return
+
   var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
   var url = URL.createObjectURL(blob)
   const aElement = document.createElement("a")

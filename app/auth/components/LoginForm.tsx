@@ -1,9 +1,9 @@
-import { AuthenticationError, Link, useMutation, Routes, PromiseReturnType, Router } from "blitz"
+import { AuthenticationError, useMutation, Routes, PromiseReturnType, Router } from "blitz"
 import login from "app/auth/mutations/login"
 import { Login } from "app/auth/validations"
 import { useState } from "react"
 import { Center } from "@chakra-ui/layout"
-import { Input, FormControl, Box, Button, IconButton, Text, Heading } from "@chakra-ui/react"
+import { Input, FormControl, Link, Box, Button, IconButton, Text, Heading } from "@chakra-ui/react"
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons"
 import { User } from "@prisma/client"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
@@ -79,13 +79,11 @@ export const LoginForm = (props: LoginFormProps) => {
             onChange={handlePasswChange}
           ></Input>
           <Text>
-            <Link href={Routes.SignupPage()}>
-              Nie jesteś jeszcze zarejestrowany? Zrób to teraz.
-            </Link>
+            <Link href={"/signup"} className="FormRedirectText">Nie jesteś jeszcze zarejestrowany? Zrób to teraz.</Link>
           </Text>
           <Center>
             <IconButton
-              id="ButtonLoginSubmit"
+              className="ButtonFormSubmit"
               icon={<ArrowForwardIcon />}
               type="submit"
               aria-label="Submit Login"

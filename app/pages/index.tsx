@@ -45,7 +45,7 @@ const FullScreen: BlitzPage = (props: any) => {
   )
 }
 
-FullScreen.authenticate = { redirectTo: "/join" }
+FullScreen.authenticate = { redirectTo: "/login" }
 FullScreen.getLayout = (page) => <Layout title="FeatureService">{page}</Layout>
 
 export default FullScreen

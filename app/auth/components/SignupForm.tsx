@@ -3,11 +3,11 @@ import { useMutation, Router, Routes } from "blitz"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
 import React, { useState } from "react"
-import { Text, Center, Input, IconButton, FormControl, Box, Heading } from "@chakra-ui/react"
+import { Text, Center, Input, IconButton, FormControl, Box, Heading, Link } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
-import {  PasswordValidator, SIGNUP_PASSW_VALIDATION } from "app/config"
+import { PasswordValidator, SIGNUP_PASSW_VALIDATION } from "app/config"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type SignupFormProps = {
@@ -52,7 +52,9 @@ export const SignupForm = (props: SignupFormProps) => {
       {errorView ? (
         <ErrorViewComponent
           title="Błąd rejestracji"
-          error={"Upewnij się, że hasło ma od 8 do 30 znaków, i zawiera conajmniej 1 małą literę, wielką, i znak"}
+          error={
+            "Upewnij się, że hasło ma od 8 do 30 znaków, i zawiera conajmniej 1 małą literę, wielką, i znak"
+          }
           statusCode={501}
           closeCb={() => {
             setErrorView(false)
@@ -85,8 +87,16 @@ export const SignupForm = (props: SignupFormProps) => {
             marginBottom={10}
             textAlign="center"
           />
+          <Text>
+            <Link href={"/login"} className="FormRedirectText">Masz już konto? Zaloguj się.</Link>
+          </Text>
           <Center>
-            <IconButton type="submit" icon={<ArrowForwardIcon />} aria-label="Submit Login" />
+            <IconButton
+              className="ButtonFormSubmit"
+              type="submit"
+              icon={<ArrowForwardIcon />}
+              aria-label="Submit Login"
+            />
           </Center>
         </FormControl>
       </form>

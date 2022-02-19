@@ -1,0 +1,14 @@
+.ButtonFormSubmit {
+  background-color: #6a6aff !important;
+}
+
+.ButtonFormSubmit:hover {
+  background-color: #3131ff !important;
+}
+
+.FormRedirectText {
+  color: rgb(184, 184, 238) !important;
+}
+
+.FormRedirectText:focus {
+}

@@ -13,3 +13,5 @@ export const PasswordValidator = (password: string) => {
 
   return true
 }
+
+export const ENABLE_SAVING_CHART_DATA = false

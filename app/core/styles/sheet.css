@@ -2,11 +2,10 @@
 @import "404_page.css";
 @import "menu_panel.css";
 @import "feature_page.css";
-@import "join_page.css";
 @import "chart_page.css";
 @import "user_settings_page.css";
 @import "error_view.css";
-@import "login_page.css";
+@import "basic_forms.css";
 
 #BackgroundBoard {
   min-height: 100vh;
