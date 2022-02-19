@@ -14,7 +14,7 @@ TODO:
 - zrobić pobieranie danych z Chart z zaznaczonego zakresu
 - wrocic do poprzedniej wersji - strony powinny być oddzielne. ✅
 - napisać stronkę error 404 ✅
-- nie będąc zalogowanym kieruj automatycznie do /join (feature page) ✅
+- nie będąc zalogowanym kieruj automatycznie do /login (feature page) ✅
 - zrobić switch PL/ENG
 - zrobić dict PL:ENG
 - mouse icon kiedy najedziemy na menu

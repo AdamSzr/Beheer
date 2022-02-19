@@ -45,30 +45,28 @@ export const Settings = (props) => {
   return (
     <Box>
       <Center>
-        <BorderComponent
-          items={
-            <Box key="1">
-              <Text fontSize="xl"> {translation.topic}</Text>
-              <Box borderBottom={"1px solid #aaa"} marginBottom={"2vh"}></Box>
-              <FormControl id="settingsForm">
-                <FormLabel>{translation.inputEmail.description}</FormLabel>
-                <Input placeholder={`${currentUser?.email}`} />
-                <FormLabel>{translation.inputPassw.description}</FormLabel>
-                <Input type={"password"} placeholder="*********" />
-                <Button
-                  mt={4}
-                  colorScheme="teal"
-                  type="submit"
-                  onClick={() => {
-                    console.error("handle settings change")
-                  }}
-                >
-                  {translation.submit.text}
-                </Button>
-              </FormControl>
-            </Box>
-          }
-        ></BorderComponent>
+        <BorderComponent>
+          <Box key="1">
+            <Text fontSize="xl"> {translation.topic}</Text>
+            <Box borderBottom={"1px solid #aaa"} marginBottom={"2vh"}></Box>
+            <FormControl id="settingsForm">
+              <FormLabel>{translation.inputEmail.description}</FormLabel>
+              <Input placeholder={`${currentUser?.email}`} />
+              <FormLabel>{translation.inputPassw.description}</FormLabel>
+              <Input type={"password"} placeholder="*********" />
+              <Button
+                mt={4}
+                colorScheme="teal"
+                type="submit"
+                onClick={() => {
+                  console.error("handle settings change")
+                }}
+              >
+                {translation.submit.text}
+              </Button>
+            </FormControl>
+          </Box>
+        </BorderComponent>
       </Center>
     </Box>
 

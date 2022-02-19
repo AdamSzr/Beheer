@@ -13,12 +13,12 @@ import "app/core/styles/sheet.css"
 import { Suspense } from "react"
 
 import { ChakraProvider, Box } from "@chakra-ui/react"
-import Join from "app/auth/pages/join"
 import { AppDefaultLanguages, AppViews, Lang } from "app/lang/available"
 import { useState } from "react"
 import lang from "app/auth/mutations/lang"
 import { DEFAULT_LANGUAGE } from "app/config"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
+import LoginPage from "app/auth/pages/login"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -52,9 +52,9 @@ export default function App({ Component, pageProps }: AppProps) {
             FallbackComponent={RootErrorFallback}
             onReset={useQueryErrorResetBoundary().reset}
           >
-            {getLayout(
-              <Component {...pageProps} lang={langObj} />
-            )}
+            <Suspense fallback="Please wait. Loading...">
+              {getLayout(<Component {...pageProps} lang={langObj} />)}
+            </Suspense>
           </ErrorBoundary>
         </ChakraProvider>
       </Box>
@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     if (error instanceof AuthenticationError) {
-      return <Join lang={langObj}/>
+      return <LoginPage lang={langObj} />
     } else if (error instanceof AuthorizationError) {
       return (
         // <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />

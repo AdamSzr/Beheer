@@ -3,18 +3,24 @@ namespace SafeCoding
   using System.Collections.Generic;
   using System.Diagnostics;
 
+  enum Status{
+    SUCCESS,
+    FAILED,
+    ERROR
+  }
+
   class ServiceResponse
   {
     public bool value { get; set; }
+    public string name { get; set; }
+    public string uuid { get; set; }
   }
 
   class ExecutionResult
   {
-    public string FlagUuid { get; set; }
-    public bool FlagValue { get; set; }
-    public Execution ReplaceExecution { get; set; }
-    public Execution WithExecution { get; set; }
-
+    public string uuid { get; set; }
+    public bool value { get; set; }
+    public Execution[] executions { get; set; }
     public string Serialize() => System.Text.Json.JsonSerializer.Serialize(this);
 
   }
@@ -25,27 +31,26 @@ namespace SafeCoding
     public Execution()
     {
       _execTimer = new Stopwatch();
-      Errors = new List<string>();
       _execTimer.Start();
     }
 
-    private bool _status;
+    private Status _status;
 
-/// <summary> Indicate that executuon was succesfull</summary>
-    public bool Status
+    /// <summary> Indicate that executuon was succesfull</summary>
+    public Status Status
     {
       get { return _status; }
       set
       {
         _execTimer.Stop();
-        Time = _execTimer.ElapsedMilliseconds;
+        time = _execTimer.ElapsedMilliseconds;
         _status = value;
       }
     }
-    public List<string> Errors { get; set; }
+    public string errors { get; set; }
 
     ///<summary> string representation of value </summary>
-    public long Time { get; set; }
-    public bool IsNewCode {get; set;}
+    public long time { get; set; }
+    public bool isMain {get; set;}
   }
 }

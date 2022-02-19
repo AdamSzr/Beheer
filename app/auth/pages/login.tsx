@@ -4,7 +4,11 @@ import { LoginForm } from "app/auth/components/LoginForm"
 import { AppViews } from "app/lang/available"
 import BorderComponent from "app/core/components/BorderComponent"
 
-const LoginPage: BlitzPage = (props: any) => {
+type LoginProps = {
+  lang: any
+}
+
+const LoginPage: BlitzPage = (props: LoginProps) => {
   console.log({ props })
   const language = props.lang.get(AppViews.login)
   const router = useRouter()

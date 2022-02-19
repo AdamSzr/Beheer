@@ -53,7 +53,7 @@ const MenuWindow = (props) => {
 
   async function LogoutUser() {
     await logoutMutation()
-    Router.push("/join")
+    Router.push("/login")
   }
 
   return (

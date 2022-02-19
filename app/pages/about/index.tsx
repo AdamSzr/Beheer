@@ -74,7 +74,7 @@ const AboutPage: BlitzPage = (props: any) => {
 
 }
 
-AboutPage.authenticate =true
+AboutPage.authenticate = true
 AboutPage.getLayout = (page) => <Layout>{page}</Layout>
 
 
