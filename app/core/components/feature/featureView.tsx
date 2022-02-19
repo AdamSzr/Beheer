@@ -32,15 +32,18 @@ import {
   FormErrorMessage,
   FormHelperText,
   Tr,
+  useClipboard,
+  Button,
 } from "@chakra-ui/react"
 
-import { DeleteIcon, InfoIcon } from "@chakra-ui/icons"
+import { CopyIcon, DeleteIcon, InfoIcon, LinkIcon } from "@chakra-ui/icons"
 
 const FeatureView = (props) => {
   const feature = props.item as Feature
   const removeCb = props.deleteCallback
   const updateCb = props.updateCallback
   const switchInitState = feature.value
+  const { hasCopied, onCopy } = useClipboard("UUID")
 
   // const [controlableValue, setCtrlValue] = useControllableState({ defaultValue: feature.value })
 
@@ -61,6 +64,11 @@ const FeatureView = (props) => {
       <Link href={Routes.ShowFeaturePage({ featureId: feature.id })}>
         <Td maxWidth="40vw">{feature.name}</Td>
       </Link>
+      <Td>
+        <Button onClick={onCopy} colorScheme="teal">
+          <CopyIcon />
+        </Button>
+      </Td>
       <Td width="fit-content">
         <Center>
           <FormControl>
@@ -69,7 +77,6 @@ const FeatureView = (props) => {
               size="md"
               isChecked={switchInitState}
               onChange={(e) => {
-                // console.log({feature})
                 updateFeature(e, feature)
               }}
             />

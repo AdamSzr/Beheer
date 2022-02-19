@@ -40,7 +40,7 @@ const CreateFeatureRow = (props) => {
 
   return (
     <Tr id="CreateFeatureRow">
-      <Td colSpan={2}>
+      <Td colSpan={3}>
         <Input
           id="NewFeatureNameInput"
           placeholder={props.placeholder}
