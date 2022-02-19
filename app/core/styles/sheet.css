@@ -6,6 +6,7 @@
 @import "chart_page.css";
 @import "user_settings_page.css";
 @import "error_view.css";
+@import "login_page.css";
 
 #BackgroundBoard {
   min-height: 100vh;

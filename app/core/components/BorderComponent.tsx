@@ -37,7 +37,7 @@ const BorderComponent = (props) => {
           textAlign="center"
           borderRadius={10}
         >
-          {props.items}
+          {props.children}
         </Box>
       </Center>
     </>

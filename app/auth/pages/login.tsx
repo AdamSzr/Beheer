@@ -2,15 +2,15 @@ import { useRouter, BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
 import { AppViews } from "app/lang/available"
+import BorderComponent from "app/core/components/BorderComponent"
 
-const LoginPage: BlitzPage = ( props:any ) => {
-  console.log({props})
+const LoginPage: BlitzPage = (props: any) => {
+  console.log({ props })
   const language = props.lang.get(AppViews.login)
   const router = useRouter()
 
-
   return (
-    <div>
+    <BorderComponent>
       <LoginForm
         language={language}
         onSuccess={(_user) => {
@@ -18,7 +18,7 @@ const LoginPage: BlitzPage = ( props:any ) => {
           router.push(next)
         }}
       />
-    </div>
+    </BorderComponent>
   )
 }
 

@@ -78,8 +78,18 @@ export const LoginForm = (props: LoginFormProps) => {
             marginBottom={10}
             onChange={handlePasswChange}
           ></Input>
+          <Text>
+            <Link href={Routes.SignupPage()}>
+              Nie jesteś jeszcze zarejestrowany? Zrób to teraz.
+            </Link>
+          </Text>
           <Center>
-            <IconButton icon={<ArrowForwardIcon />} type="submit" aria-label="Submit Login">
+            <IconButton
+              id="ButtonLoginSubmit"
+              icon={<ArrowForwardIcon />}
+              type="submit"
+              aria-label="Submit Login"
+            >
               Login
             </IconButton>
           </Center>
