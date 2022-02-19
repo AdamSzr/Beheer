@@ -4,6 +4,7 @@ export class Feature {
   id: number
   userId: number
   name: string
+  uuid: string
   value: boolean
   createdAt: Date
   updatedAt: Date
@@ -24,7 +25,7 @@ export class PostExec {
 
 export class PostExecDTO {
   id: string
-  key: string
+  uuid: string
   createdAt: Date
   argument: string
   executedWithStatus: string

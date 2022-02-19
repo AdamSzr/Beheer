@@ -8,6 +8,7 @@ import {
   RandomInt,
   Range,
 } from "app/utils/base"
+import { v4 as uuidv4 } from "uuid"
 import { Feature } from "db"
 import { any } from "zod"
 
@@ -28,7 +29,7 @@ export function CreatePostExecDTOBasedOnStaticData(countPerFeature): PostExecDTO
       let dto = new PostExecDTO()
       dto.argument = Randomfrom(["true", "false"])
       dto.createdAt = randomDate(DateAddDays(Date.now(), -60))
-      dto.key = features[z].key
+      dto.uuid = uuidv4()
       dto.executedWithStatus = ExecutedWithStatus.getRandom()
       dto.old = randomExecDetails()
       dto.replacment = randomExecDetails()
@@ -61,7 +62,7 @@ export function CreatePostExecDTO(key: string): PostExecDTO {
   const now = new Date()
 
   obj.createdAt = randomDate(DateAddDays(now, -365), now)
-  obj.key = createKey(key)
+  obj.uuid = createKey(key)
   obj.argument = "" + faker.datatype.boolean()
   obj.executedWithStatus = ExecutedWithStatus.getElementByIdx(RandomInt(0, 4)) as any
 

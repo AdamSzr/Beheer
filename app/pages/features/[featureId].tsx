@@ -100,7 +100,7 @@ const ShowFeaturePage: BlitzPage = () => {
   )
 }
 
-ShowFeaturePage.authenticate = true
+ShowFeaturePage.authenticate = { redirectTo: "/login" }
 ShowFeaturePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default ShowFeaturePage

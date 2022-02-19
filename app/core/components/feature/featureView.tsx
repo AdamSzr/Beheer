@@ -43,11 +43,7 @@ const FeatureView = (props) => {
   const removeCb = props.deleteCallback
   const updateCb = props.updateCallback
   const switchInitState = feature.value
-  const { hasCopied, onCopy } = useClipboard("UUID")
-
-  // const [controlableValue, setCtrlValue] = useControllableState({ defaultValue: feature.value })
-
-  // console.log({feature})
+  const { hasCopied, onCopy } = useClipboard(`const FLAG = ${feature.uuid};`)
 
   function deleteFeature(e: any, feature: Feature) {
     removeCb(feature.id)

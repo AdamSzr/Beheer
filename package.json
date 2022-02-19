@@ -41,6 +41,7 @@
     "react-chartjs-2": "4.0.0",
     "react-dom": "18.0.0-alpha-5ca4b0433-20211020",
     "react-hook-form": "7.22.5",
+    "uuid": "8.3.2",
     "zod": "3.11.6"
   },
   "devDependencies": {
