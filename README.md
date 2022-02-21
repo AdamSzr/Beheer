@@ -27,3 +27,6 @@ TODO:
 - zrobić ustawianie listy feature od daty ✅
 - zrobić session storage dla language
 - dodac przycisk copy do widoku feature
+- zmienic czciankę na "large" w tabeli
+- dymek na ikonce kopiowania - w tabeli
+- zmienic kolejność - link do tworzenia funkcjonalności pod tabela

@@ -146,21 +146,19 @@ const FeatureChart = (props) => {
   }
 
   return (
-      <Box padding="3vh" minHeight="100vh">
-        
-          <Chart
-            type="line"
-            data={data}
-            options={options as any}
-            id="feature_chart"
-            onClick={() => console.log(123)}
-          />
-        
-        {/* <Box>
+    <Box maxHeight={"60vh"}>
+      <Chart
+        type="line"
+        data={data}
+        options={options as any}
+        id="feature_chart"
+        onClick={() => console.log(123)}
+      />
+
+      {/* <Box>
           <FeatureStats data={data} />
         </Box> */}
-      </Box>
-    
+    </Box>
   )
 }
 

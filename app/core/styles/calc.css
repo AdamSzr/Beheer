@@ -1,0 +1,8 @@
+td {
+  border: 1px solid black;
+}
+
+#display {
+  border: 3px solid black;
+  min-height: 24px;
+}

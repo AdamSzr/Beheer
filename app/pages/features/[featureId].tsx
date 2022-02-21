@@ -25,6 +25,7 @@ import {
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import { PostExecutionData } from "app/core/models/model"
 import { ENABLE_SAVING_CHART_DATA } from "app/config"
+import FeatureDetailsWindow from "app/core/components/feature/featureDetailsWindow"
 
 const Feature = (props) => {
   const featureId = useParam("featureId", "number")
@@ -72,29 +73,30 @@ const Feature = (props) => {
 
 const ShowFeaturePage: BlitzPage = () => {
   return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <IconButton
-          aria-label=""
-          onClick={() => Router.back()}
-          icon={<ArrowBackIcon />}
-          position="absolute"
-          left="2vh"
-          top="2vh"
-          colorScheme="teal"
-          variant="outline"
-        />
-        <IconButton
-          aria-label=""
-          onClick={() => Router.back()}
-          icon={<ChevronDownIcon />}
-          position="absolute"
-          right="2vh"
-          top="2vh"
-          colorScheme="teal"
-          variant="outline"
-        />
-        <Feature response={null} />
-      </Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
+      <IconButton
+        aria-label=""
+        onClick={() => Router.back()}
+        icon={<ArrowBackIcon />}
+        position="absolute"
+        left="2vh"
+        top="2vh"
+        colorScheme="teal"
+        variant="outline"
+      />
+      <IconButton
+        aria-label=""
+        onClick={() => Router.back()}
+        icon={<ChevronDownIcon />}
+        position="absolute"
+        right="2vh"
+        top="2vh"
+        colorScheme="teal"
+        variant="outline"
+      />
+      <FeatureDetailsWindow />
+      {/* <Feature response={null} /> */}
+    </Suspense>
   )
 }
 

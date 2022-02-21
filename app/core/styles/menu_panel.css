@@ -21,14 +21,15 @@
   text-decoration: underline;
   text-decoration-color: gold;
   cursor: pointer;
+  font-weight: bold;
 }
 
 #LogoutButton {
-  background-color: tomato;
+  background-color: brown;
   border-radius: 6px;
   padding: 2px 2px 2px 2px;
 }
 
 #LogoutButton:hover {
-  background-color: rgba(255, 17, 17, 0.671);
+  background-color: rgb(78 78 78);
 }

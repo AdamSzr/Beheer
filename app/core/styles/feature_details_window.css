@@ -1,0 +1,39 @@
+#featureDetailWindow {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+#featureDetailView {
+  height: 100vh;
+  padding-top: 7vh;
+  padding-bottom: 7vh;
+  padding-right: 7vw;
+  padding-left: 7vw;
+}
+
+#featureDetailsMenu {
+  background-color: #1a3076b8;
+  height: 5%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#featureDetailsContainer {
+  background-color: rgb(169, 169, 169);
+  height: 95%;
+}
+
+#featureDetailViewBorder {
+  border: 2px solid #4299e199;
+}
+
+.featureMenuButton {
+  height: 5vh;
+  border: 4px solid rgb(52, 111, 174);
+}
+
+canvas{
+    width: 600px;
+    height: 400px;
+}
