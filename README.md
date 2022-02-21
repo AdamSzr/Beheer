@@ -15,15 +15,15 @@ TODO:
 - wrocic do poprzedniej wersji - strony powinny być oddzielne. ✅
 - napisać stronkę error 404 ✅
 - nie będąc zalogowanym kieruj automatycznie do /login (feature page) ✅
-- zrobić switch PL/ENG
-- zrobić dict PL:ENG
-- mouse icon kiedy najedziemy na menu
+- zrobić switch PL/ENG ✅
+- zrobić dict PL:ENG ✅
+- mouse icon kiedy najedziemy na menu ✅
 - peace of paper na stronie About
 - ulepszyć scroll na feature chart page
 - sprawdzić czy w response mozna wysłać page
-- z ujednolicic nazewnictwo zmiennych - bd - models
-- zrobic pobieranie danych - blob
-- zrobic wyswietlanie errorów
+- z ujednolicic nazewnictwo zmiennych - bd - models ✅
+- zrobic pobieranie danych - blob ✅
+- zrobic wyswietlanie errorów ✅
 - zrobić ustawianie listy feature od daty ✅
 - zrobić session storage dla language
 - dodac przycisk copy do widoku feature

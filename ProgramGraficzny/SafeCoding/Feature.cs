@@ -6,6 +6,7 @@ namespace SafeCoding
   {
     public string uuid { get; private set; }
     public bool value { get; private set; }
+    public string name {get; private set;}
 
     private Action oldCode { get; set; }
     private Action newCode { get; set; }
@@ -38,16 +39,16 @@ namespace SafeCoding
     private void Execute()
     {
       ExecutionResult result = new();
-      result.FlagUuid = uuid;
-      result.FlagValue = connector.Download().value;
-      if (result.FlagValue)
+      result.uuid = uuid;
+      result.value = connector.Download().value;
+      if (result.value)
       {
-        result.WithExecution = RunCode(newCode);
-        result.WithExecution.IsNewCode = true;
+        result.main = RunCode(newCode);
+        result.main.isMain = true;
       }
       else
       {
-        result.ReplaceExecution = RunCode(oldCode);
+        result.replace = RunCode(oldCode);
       }
 
 
@@ -61,19 +62,14 @@ namespace SafeCoding
       try
       {
         code();
-        exec.Status = true;
+        exec.status = Statuses.SUCCESS;
       }
       catch (Exception ex)
       {
-        exec.Status = false;
-        exec.Errors.Add(ex.Message);
+        exec.status = Statuses.FAILED;
+        exec.errors = ex.Message;
       }
       return exec;
-    }
-
-    private bool SendStats()
-    {
-      return true;
     }
 
   }

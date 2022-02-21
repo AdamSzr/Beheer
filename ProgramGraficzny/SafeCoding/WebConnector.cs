@@ -7,16 +7,15 @@ namespace SafeCoding
 {
   class ControlFeatureServerConnector
   {
-    private static Func<string, string> CreateUrl = (string key) => $"http://localhost:3000/api/feature/{key}";
-    private static WebClient webClient;
+    private static Func<string, string> CreateUrl = (string uuid) => $"http://localhost:3000/api/feature/{uuid}";
     private static HttpClient httpClient;
-    private string featureKey;
+    private string featureUuid;
     private static string Url;
     //  private WebClient last;
 
-    public ControlFeatureServerConnector(string featureKey)
+    public ControlFeatureServerConnector(string featureUuid)
     {
-      this.featureKey = featureKey;
+      this.featureUuid = featureUuid;
 
       if (httpClient == null)
         httpClient = new HttpClient();
@@ -25,7 +24,9 @@ namespace SafeCoding
     public ServiceResponse Download()
     {
       if (Url == default)
-        Url = CreateUrl(featureKey);
+        Url = CreateUrl(featureUuid);
+
+      Console.Write(Url);
 
       try
       {
@@ -45,10 +46,12 @@ namespace SafeCoding
     public bool Publish(ExecutionResult er)
     {
       if (Url == default)
-        Url = CreateUrl(featureKey);
+        Url = CreateUrl(featureUuid);
+
+      var content = new System.Net.Http.StringContent(er.Serialize(), System.Text.Encoding.UTF8, "application/json");
 
       HttpRequestMessage rm = new(HttpMethod.Post, Url);
-      rm.Content = new StringContent(er.Serialize());
+      rm.Content = content;
 
       try
       {

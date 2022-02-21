@@ -1,48 +1,26 @@
 import { resolver, NotFoundError } from "blitz"
 import { PrismaClient, Prisma } from "@prisma/client"
 import { z } from "zod"
-import { ExecuteDetails, PostExec, PostExecDTO } from "app/core/models/model"
+import { PostExecutionData, ExecutionData } from "app/core/models/model"
 import db from "db"
 
-export default resolver.pipe(async (execResult: PostExec) => {
+export default resolver.pipe(async (execResult: PostExecutionData) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   // const prisma = new PrismaClient()
   console.log({ execResult })
-  const execDetailsCreate = [] as any
+  // const execDetailsCreate = [] as any
+  const obj = execResult.value ? execResult.main : execResult.replace
 
-  if (execResult.ReplaceExecution)
-    execDetailsCreate.push(createPostExecDetailsStruct(execResult.ReplaceExecution))
-
-  if (execResult.WithExecution)
-    execDetailsCreate.push(createPostExecDetailsStruct(execResult.WithExecution))
-
-  const exec = await db.execution.create({
+  const exec = await db.executionResult.create({
+    include: {
+      executions: true,
+    },
     data: {
-      flagValue: Boolean(execResult.FlagValue),
-      flagKey: execResult.FlagKey,
-      execDetails: {
-        create: execDetailsCreate,
+      value: execResult.value,
+      uuid: execResult.uuid,
+      executions: {
+        create: obj,
       },
     },
   })
-  return exec
 })
-
-function createPostExecDetailsStruct(executeDetails) {
-  const x = {
-    time: executeDetails.Time,
-    errors: JSON.stringify(executeDetails.Errors),
-    isNewCode: executeDetails.IsNewCode.valueOf(),
-    status: executeDetails.Status.valueOf(),
-  }
-  console.log(x)
-  return x
-}
-
-// flagValue Boolean
-// key       String
-// feature   Feature @relation(fields: [key], references: [name])
-
-// details ExecuteDetails[]
-// User    User?            @relation(fields: [userId], references: [id])
-// userId  Int?

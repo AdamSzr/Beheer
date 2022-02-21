@@ -3,11 +3,6 @@ namespace SafeCoding
   using System.Collections.Generic;
   using System.Diagnostics;
 
-  enum Status{
-    SUCCESS,
-    FAILED,
-    ERROR
-  }
 
   class ServiceResponse
   {
@@ -20,10 +15,11 @@ namespace SafeCoding
   {
     public string uuid { get; set; }
     public bool value { get; set; }
-    public Execution[] executions { get; set; }
+    public Execution main { get; set; }
+    public Execution replace { get; set; }
     public string Serialize() => System.Text.Json.JsonSerializer.Serialize(this);
-
   }
+
 
   class Execution
   {
@@ -34,10 +30,10 @@ namespace SafeCoding
       _execTimer.Start();
     }
 
-    private Status _status;
+    private string _status;
 
     /// <summary> Indicate that executuon was succesfull</summary>
-    public Status Status
+    public string status
     {
       get { return _status; }
       set
@@ -53,4 +49,11 @@ namespace SafeCoding
     public long time { get; set; }
     public bool isMain {get; set;}
   }
+}
+
+class Statuses{
+ public static string SUCCESS = "SUCCESS";
+ public static string FAILED = "FAILED";
+ public static string ERROR = "ERROR";
+
 }

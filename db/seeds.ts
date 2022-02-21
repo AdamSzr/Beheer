@@ -1,4 +1,6 @@
-// import db from "./index"
+import { PostExecutionData } from "app/core/models/model"
+import saveExecResult from "app/core/queries/feature/saveExecResult"
+import db from "./index"
 
 /*
  * This seed function is executed when you run `blitz db seed`.
@@ -7,10 +9,20 @@
  * or https://github.com/Marak/Faker.js to easily generate
  * realistic data.
  */
+const NUMBER_OF_EXECUTION_PER_FEATURE = 30
+
 const seed = async () => {
-  // for (let i = 0; i < 5; i++) {
-  //   await db.project.create({ data: { name: "Project " + i } })
-  // }
+  const featues = await db.feature.findMany({ where: { userId: 1 } })
+  console.log(featues)
+
+  featues.forEach(async (element) => {
+    for (let index = 0; index < NUMBER_OF_EXECUTION_PER_FEATURE; index++) {
+      const postExecData = PostExecutionData.random(element)
+      await saveExecResult(postExecData, null as any)
+    }
+  })
+
+
 }
 
 export default seed

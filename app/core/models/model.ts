@@ -1,4 +1,5 @@
-import { Randomfrom } from "app/utils/base"
+import { Randomfrom, RandomInt } from "app/utils/base"
+import faker from "faker"
 
 export class Feature {
   id: number
@@ -16,52 +17,62 @@ export class Feature {
   }
 }
 
-export class PostExec {
-  FlagKey: string
-  FlagValue: string
-  ReplaceExecution: ExecuteDetails
-  WithExecution: ExecuteDetails
-}
-
-export class PostExecDTO {
-  id: string
+export class PostExecutionData {
   uuid: string
-  createdAt: Date
-  argument: string
-  executedWithStatus: string
-  old: ExecuteDetails
-  replacment: ExecuteDetails
+  value: boolean
+  main: ExecutionData
+  replace: ExecutionData
 
-  constructor() {
-    this.old = new ExecuteDetails()
-    this.replacment = new ExecuteDetails()
+  static random(feature: Feature) {
+    let x = new PostExecutionData()
+    x.uuid = feature.uuid
+    x.value = feature.value
+    if (x.value) x.main = ExecutionData.random(x.value)
+    else x.replace = ExecutionData.random(x.value)
+
+    return x
   }
 }
 
-export class ExecuteDetails {
-  Time: number
-  Errors: string[]
-  ExecutionId: number
-  IsNewCode: Boolean
-  Status: Boolean
-  constructor() {
-    this.Errors = []
+export class ExecutionData {
+  errors: string
+  time: number
+  status: "SUCCESS" | "FAILED" | "ERROR" | any
+  isMain: boolean
+
+  static random(featureValue: boolean) {
+    let x = new ExecutionData()
+    x.isMain = featureValue
+    x.time = RandomInt(1, 50_000)
+    x.status = Randomfrom(["SUCCESS", "ERROR"])
+    if (x.status === "ERROR") x.errors = faker.git.commitMessage()
+
+    return x
   }
 }
 
-export class ExecutedWithStatus {
-  static FULL_SUCCESS = "FULL_SUCCESS"
-  static SUCCESS = "SUCCESS"
-  static PARTLY_FAILED = "PARTLY_FAILED"
-  static FAILED = "FAILED"
+// model ExecutionResult {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
 
-  public static getElementByIdx(idx) {
-    return Object.keys(ExecutedWithStatus)[idx]
-  }
-  public static getIdByElement(element) {
-    return Object.keys(ExecutedWithStatus).indexOf(element)
-  }
-  public static getRandom() {
-    return Randomfrom(Object.keys(ExecutedWithStatus))
-  }
-}
+//   value   Boolean
+//   uuid    String  @unique
+//   feature Feature @relation(fields: [uuid], references: [uuid])
+//   status  Status
+
+//   executions Execution[]
+// }
+
+// model Execution {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   errors    String
+//   time      Decimal
+//   status    Boolean
+//   isMain    Boolean
+
+//   ExecutionResult   ExecutionResult? @relation(fields: [executionResultId], references: [id])
+//   executionResultId Int?
+// }

@@ -82,31 +82,23 @@ model ExecutionResult {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  value     Boolean
+  uuid      String
+  feature   Feature  @relation(fields: [uuid], references: [uuid])
 
-  value   Boolean
-  uuid    String  @unique
-  feature Feature @relation(fields: [uuid], references: [uuid])
-  status  Status
-
-  executions Execution[]
+  executions Execution?
 }
 
 model Execution {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  errors    String
+  errors    String?
   time      Decimal
-  status    Boolean
+  status    String
   isMain    Boolean
 
 
-  ExecutionResult   ExecutionResult? @relation(fields: [executionResultId], references: [id])
-  executionResultId Int?
-}
-
-enum Status {
-  SUCCESS
-  FAILED
-  ERROR
+  ExecutionResult   ExecutionResult @relation(fields: [executionResultId], references: [id])
+  executionResultId Int             @unique
 }
