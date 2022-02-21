@@ -6,7 +6,7 @@ import deleteFeature from "app/core/mutations/deleteFeature"
 import { Line } from "react-chartjs-2"
 import { ChartData, ChartOptions } from "chart.js"
 import { color } from "app/utils/chart/utils"
-import { CreatePostExecDTOBasedOnStaticData, GetStaticFeatures } from "app/core/models/faker"
+// import { CreatePostExecDTOBasedOnStaticData, GetStaticFeatures } from "app/core/models/faker"
 import { DateAddDays } from "app/utils/time"
 import FeatureChart from "app/core/components/feature/featureChart"
 import {
@@ -23,12 +23,12 @@ import {
   IconButton,
 } from "@chakra-ui/react"
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { PostExecDTO } from "app/core/models/model"
+import { PostExecutionData } from "app/core/models/model"
 import { ENABLE_SAVING_CHART_DATA } from "app/config"
 
 const Feature = (props) => {
   const featureId = useParam("featureId", "number")
-  const featuresExecDTO = CreatePostExecDTOBasedOnStaticData(1000)
+  // const featuresExecDTO = CreatePostExecDTOBasedOnStaticData(1000)
 
   // TODO: dodać tabelkę - statystyki
   //console.log(featuresExecDTO)
@@ -36,42 +36,42 @@ const Feature = (props) => {
   // const [deleteFeatureMutation] = useMutation(deleteFeature)
 
   const [feature] = useQuery(getFeature, { id: featureId })
+  console.log({ feature })
   return (
-    <>
+    <Box id="featureDetailWindow">
       <FeatureChart
-        postExecDTOS={featuresExecDTO}
+        // postExecDTOS={featuresExecDTO}
         onSelected={(execDtos) => {
           console.log(execDtos)
-          downloadData(execDtos)
+          // downloadData(execDtos)
         }}
       />
-    </>
+    </Box>
   )
 }
 
-function getFormatedDate(dto: PostExecDTO): string {
-  const date = dto.createdAt
-  return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
-}
+// function getFormatedDate(dto: PostExecutionData): string {
+//   const date = dto.createdAt
+//   return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+// // }
 
-function downloadData(data: PostExecDTO[]) {
-  if (!ENABLE_SAVING_CHART_DATA) return
+// function downloadData(data: PostExecutionData[]) {
+//   if (!ENABLE_SAVING_CHART_DATA) return
 
-  var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
-  var url = URL.createObjectURL(blob)
-  const aElement = document.createElement("a")
-  aElement.download = `${getFormatedDate(data[0] as any)}_TO_${getFormatedDate(
-    data[data.length - 1] as any
-  )}`
-  aElement.href = url
-  document.body.appendChild(aElement)
-  aElement.click()
-  document.body.removeChild(aElement)
-}
+//   var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
+//   var url = URL.createObjectURL(blob)
+//   const aElement = document.createElement("a")
+//   aElement.download = `${getFormatedDate(data[0] as any)}_TO_${getFormatedDate(
+//     data[data.length - 1] as any
+//   )}`
+//   aElement.href = url
+//   document.body.appendChild(aElement)
+//   aElement.click()
+//   document.body.removeChild(aElement)
+// }
 
 const ShowFeaturePage: BlitzPage = () => {
   return (
-    <div>
       <Suspense fallback={<div>Loading...</div>}>
         <IconButton
           aria-label=""
@@ -94,9 +94,7 @@ const ShowFeaturePage: BlitzPage = () => {
           variant="outline"
         />
         <Feature response={null} />
-        {/* <FakerData /> */}
       </Suspense>
-    </div>
   )
 }
 

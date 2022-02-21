@@ -1,7 +1,7 @@
 import { PostExecutionData } from "app/core/models/model"
 import { Middleware } from "blitz"
 import db from "db"
-import saveExecDetails from "app/core/queries/feature/saveExecDetails"
+import saveExecDetails from "app/core/mutations/saveExecDetails"
 import saveExecResult from "app/core/queries/feature/saveExecResult"
 
 const GetFeatureValue: Middleware = async (req, res, next) => {
