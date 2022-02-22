@@ -9,6 +9,7 @@ import { color } from "app/utils/chart/utils"
 // import { CreatePostExecDTOBasedOnStaticData, GetStaticFeatures } from "app/core/models/faker"
 import { DateAddDays } from "app/utils/time"
 import FeatureChart from "app/core/components/feature/featureChart"
+
 import {
   Button,
   Center,
@@ -23,33 +24,9 @@ import {
   IconButton,
 } from "@chakra-ui/react"
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { PostExecutionData } from "app/core/models/model"
+import { PostExecutionData, Feature} from "app/core/models/model"
 import { ENABLE_SAVING_CHART_DATA } from "app/config"
 import FeatureDetailsWindow from "app/core/components/feature/featureDetailsWindow"
-
-const Feature = (props) => {
-  const featureId = useParam("featureId", "number")
-  // const featuresExecDTO = CreatePostExecDTOBasedOnStaticData(1000)
-
-  // TODO: dodać tabelkę - statystyki
-  //console.log(featuresExecDTO)
-  //useQuery(getFeature,{id:featureId})
-  // const [deleteFeatureMutation] = useMutation(deleteFeature)
-
-  const [feature] = useQuery(getFeature, { id: featureId })
-  console.log({ feature })
-  return (
-    <Box id="featureDetailWindow">
-      <FeatureChart
-        // postExecDTOS={featuresExecDTO}
-        onSelected={(execDtos) => {
-          console.log(execDtos)
-          // downloadData(execDtos)
-        }}
-      />
-    </Box>
-  )
-}
 
 // function getFormatedDate(dto: PostExecutionData): string {
 //   const date = dto.createdAt
@@ -72,6 +49,15 @@ const Feature = (props) => {
 // }
 
 const ShowFeaturePage: BlitzPage = () => {
+  // const feature = (await useQuery(getFeatureByIdOrName, { id: props.featureId })) as any
+  // const items = await useQuery(getAllExecutuionData, { uuid: feature.uuid })
+  // console.log({ items })
+  // const featuresBase = useQuery(getFeatures, { userId: currentUser?.id })[0]
+
+  const featureId = useParam("featureId", "number")
+
+  const [feature] = useQuery(getFeature, { id: featureId })
+  console.log({ feature })
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {/* <IconButton
@@ -84,7 +70,7 @@ const ShowFeaturePage: BlitzPage = () => {
         colorScheme="teal"
         variant="outline"
       /> */}
-      <FeatureDetailsWindow />
+      <FeatureDetailsWindow feature={feature as Feature} />
       {/* <Feature response={null} /> */}
     </Suspense>
   )

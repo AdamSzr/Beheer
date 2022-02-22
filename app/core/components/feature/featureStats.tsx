@@ -22,6 +22,11 @@ import {
 } from "chart.js"
 import { Chart } from "react-chartjs-2"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
+import { PostExecutionData } from "app/core/models/model"
+
+type FeatureStatsProps = {
+  data: PostExecutionData
+}
 
 const FeatureStats = (props) => {
   const data = props.data
@@ -32,7 +37,7 @@ const FeatureStats = (props) => {
         <Table id="FeatureStatsTable" variant="unstyled">
           <Thead>
             <Tr>
-              <Th> stats name </Th>
+              <Th>stats name</Th>
               <Th>SUCCESS</Th>
               <Th>REPLACED</Th>
               <Th>FAILED</Th>
@@ -41,6 +46,22 @@ const FeatureStats = (props) => {
           <Tbody>
             {CreateRow({ title: "executed times", data: [1, 2, 3] })}
             {CreateRow({ title: "executed procentage", data: [1, 2, 3] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
             {CreateRow({ title: "Total", data: ["-", "-", 6] })}
           </Tbody>
         </Table>

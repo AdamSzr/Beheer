@@ -1,9 +1,19 @@
 #FeatureStatsTable {
   background-color: #8d6868;
+  /* padding-right: 5vw; */
+}
+
+#FeatureStatsTable > * > tr > * {
+  padding: 0;
+  border: 0.3px solid black
 }
 
 #TableContainer {
-  padding-top: 15vh;
+  padding: 0 auto;
+  padding-top: 1.5vh;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+  border-collapse: collapse;
 }
 
 td,

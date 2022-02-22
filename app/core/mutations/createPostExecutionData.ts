@@ -24,6 +24,7 @@ export default resolver.pipe(async (execResult: ExecutionResult) => {
     data: {
       value: execResult.result.value,
       uuid: execResult.result.uuid,
+      createdAt: execResult.createdAt,
       executions: {
         create: obj,
       },

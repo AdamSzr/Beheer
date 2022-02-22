@@ -22,11 +22,15 @@ import {
   Legend,
 } from "chart.js"
 import { Chart } from "react-chartjs-2"
-import FeatureStats from "./featureStats"
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
-const FeatureChart = (props) => {
+type FeatureChartProps = {
+  data: PostExecutionData[]
+  onSelected?: () => void
+}
+
+const FeatureChart = (props: FeatureChartProps) => {
   // let postExecDTO = props.postExecDTOS as PostExecDTO[]
   // postExecDTO = postExecDTO.filter((i) => i.executedWithStatus == ExecutedWithStatus.FAILED)
   // postExecDTO = GetOnlyFromLastMonths(postExecDTO, 1)

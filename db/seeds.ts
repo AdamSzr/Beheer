@@ -1,5 +1,5 @@
 import { PostExecutionData } from "app/core/models/model"
-import saveExecResult from "app/core/queries/feature/saveExecResult"
+import createPostExecutionData from "app/core/mutations/createPostExecutionData"
 import db from "./index"
 
 /*
@@ -18,11 +18,9 @@ const seed = async () => {
   featues.forEach(async (element) => {
     for (let index = 0; index < NUMBER_OF_EXECUTION_PER_FEATURE; index++) {
       const postExecData = PostExecutionData.random(element)
-      await saveExecResult(postExecData, null as any)
+      await createPostExecutionData(postExecData as any, null as any)
     }
   })
-
-
 }
 
 export default seed

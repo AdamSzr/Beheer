@@ -1,4 +1,5 @@
 import { Randomfrom, RandomInt } from "app/utils/base"
+import { DateAddDays } from "app/utils/time"
 import faker from "faker"
 
 export class Feature {
@@ -22,6 +23,7 @@ export class PostExecutionData {
   value: boolean
   main: ExecutionData
   replace: ExecutionData
+  createdAt?: number
 
   static random(feature: Feature) {
     let x = new PostExecutionData()
@@ -29,6 +31,8 @@ export class PostExecutionData {
     x.value = feature.value
     if (x.value) x.main = ExecutionData.random(x.value)
     else x.replace = ExecutionData.random(x.value)
+
+    x.createdAt = DateAddDays(new Date(), RandomInt(-90,0)).getTime()
 
     return x
   }
