@@ -52,7 +52,7 @@ const FeatureChart = (props) => {
   }
 
   const options = {
-    maintainAspectRatio: false,
+    // maintainAspectRatio: true,
     // responsive: true,
     events: ["mousemove", "click"],
     interaction: {
@@ -68,7 +68,6 @@ const FeatureChart = (props) => {
     onClick: (e, elements, chart) => {
       // console.log(e)
       // console.log({from_day:e.})
-
       try {
         const selected = GetChartPointData(e, elements, chart)
         // console.log(selected.label)
@@ -97,7 +96,6 @@ const FeatureChart = (props) => {
         //     )
         //   }
         // })
-
         // console.log(GetChartPointData(e, elements, chart))
       } catch (error) {
         console.error("Unable to pick a point")
@@ -153,6 +151,7 @@ const FeatureChart = (props) => {
         options={options as any}
         id="feature_chart"
         onClick={() => console.log(123)}
+        style={{ position: "relative", height: "40vh", width: "80vw" }}
       />
 
       {/* <Box>

@@ -11,7 +11,7 @@ TODO:
 - naprawić switch w tabeli features ✅
 - search zmienić - szukanie nie powinno być case sensitive ✅
 - Tabelka ze statystykami, dla feature Chart
-- zrobić pobieranie danych z Chart z zaznaczonego zakresu
+- zrobić pobieranie danych z Chart z zaznaczonego zakresu✅
 - wrocic do poprzedniej wersji - strony powinny być oddzielne. ✅
 - napisać stronkę error 404 ✅
 - nie będąc zalogowanym kieruj automatycznie do /login (feature page) ✅
@@ -25,8 +25,7 @@ TODO:
 - zrobic pobieranie danych - blob ✅
 - zrobic wyswietlanie errorów ✅
 - zrobić ustawianie listy feature od daty ✅
-- zrobić session storage dla language
-- dodac przycisk copy do widoku feature
+- dodac przycisk copy do widoku feature ✅
 - zmienic czciankę na "large" w tabeli
 - dymek na ikonce kopiowania - w tabeli
 - zmienic kolejność - link do tworzenia funkcjonalności pod tabela

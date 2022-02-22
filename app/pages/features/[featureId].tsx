@@ -74,7 +74,7 @@ const Feature = (props) => {
 const ShowFeaturePage: BlitzPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <IconButton
+      {/* <IconButton
         aria-label=""
         onClick={() => Router.back()}
         icon={<ArrowBackIcon />}
@@ -83,17 +83,7 @@ const ShowFeaturePage: BlitzPage = () => {
         top="2vh"
         colorScheme="teal"
         variant="outline"
-      />
-      <IconButton
-        aria-label=""
-        onClick={() => Router.back()}
-        icon={<ChevronDownIcon />}
-        position="absolute"
-        right="2vh"
-        top="2vh"
-        colorScheme="teal"
-        variant="outline"
-      />
+      /> */}
       <FeatureDetailsWindow />
       {/* <Feature response={null} /> */}
     </Suspense>
