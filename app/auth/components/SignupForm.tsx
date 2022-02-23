@@ -22,7 +22,7 @@ export const SignupForm = (props: SignupFormProps) => {
   const [password, setPassword] = useState("")
   const [errorView, setErrorView] = useState("" as any)
   const language = props.language
-  console.log({ language })
+  // console.log({ language })
 
   const onSubmitCb = async (e) => {
     e.preventDefault()
@@ -88,7 +88,9 @@ export const SignupForm = (props: SignupFormProps) => {
             textAlign="center"
           />
           <Text>
-            <Link href={"/login"} className="FormRedirectText">Masz już konto? Zaloguj się.</Link>
+            <Link href={"/login"} className="FormRedirectText">
+              Masz już konto? Zaloguj się.
+            </Link>
           </Text>
           <Center>
             <IconButton

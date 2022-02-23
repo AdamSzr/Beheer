@@ -1,8 +1,7 @@
 import { PostExecutionData } from "app/core/models/model"
 import { Middleware } from "blitz"
 import db from "db"
-import saveExecDetails from "app/core/mutations/saveExecDetails"
-import saveExecResult from "app/core/queries/feature/saveExecResult"
+import createPostExecutionData from "app/core/mutations/createPostExecutionData"
 
 const GetFeatureValue: Middleware = async (req, res, next) => {
   console.log(">> Entered <<")
@@ -18,12 +17,13 @@ const GetFeatureValue: Middleware = async (req, res, next) => {
     const result = req.body as PostExecutionData
     console.log({ result })
 
-    const postExecResult = await saveExecResult(result, null as any)
+    const postExecResult = await createPostExecutionData(result, null as any)
     console.log({ postExecResult })
 
     // const replace = await saveExecDetails(execResult.ReplaceExecution, null as any)
     // const withcode = await saveExecDetails(execResult.WithExecution, null as any)
     // console.log({ replace, withcode })
+    return res.status(201).json(postExecResult)
   }
 
   return res.status(404).json({ error: "This endpoint is available only for GET|POST method." })

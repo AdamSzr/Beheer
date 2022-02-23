@@ -29,3 +29,4 @@ TODO:
 - zmienic czciankę na "large" w tabeli
 - dymek na ikonce kopiowania - w tabeli
 - zmienic kolejność - link do tworzenia funkcjonalności pod tabela
+- dodac funkcję autoswitch gdy otrzymamy error + powiadomienie email.

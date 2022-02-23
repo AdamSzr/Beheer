@@ -28,7 +28,7 @@ export function randomDate(start: Date, end?: Date): Date {
   return newD
 }
 
-export function DateAddDays(startDate, days) {
+export function DateAddDays(startDate: number | Date, days) {
   var date = new Date(startDate.valueOf())
   date.setDate(date.getDate() + days)
   return date

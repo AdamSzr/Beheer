@@ -1,6 +1,7 @@
 import { Randomfrom, RandomInt } from "app/utils/base"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
+// import { ExecutionResult } from "../mutations/createPostExecutionData"
 
 export class Feature {
   id: number
@@ -32,7 +33,7 @@ export class PostExecutionData {
     if (x.value) x.main = ExecutionData.random(x.value)
     else x.replace = ExecutionData.random(x.value)
 
-    x.createdAt = DateAddDays(new Date(), RandomInt(-90,0)).getTime()
+    x.createdAt = DateAddDays(new Date(), RandomInt(-90, 0)).getTime()
 
     return x
   }

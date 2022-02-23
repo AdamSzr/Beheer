@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentLang, setCurrentLang] = useState(DEFAULT_LANGUAGE)
   const [language, setLang] = useState(AppDefaultLanguages[currentLang])
   const langObj = { get: getLanguageFor, update: updateLanguage }
-  console.log({ language })
+  // console.log({ language })
 
   function updateLanguage() {
     setLang((current) => {
@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     if (error instanceof AuthenticationError) {
-      return <LoginPage lang={langObj} />
+      return <LoginPage lang={langObj} /> //TODO: 
     } else if (error instanceof AuthorizationError) {
       return (
         // <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />
