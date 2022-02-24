@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Spacer } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Spacer } from "@chakra-ui/react"
 import { useState } from "react"
 import FeatureChart from "./featureChart"
 import FeatureStats from "./featureStats"
@@ -17,7 +17,11 @@ const FeatureDetailsWindow = (props: FeatureDetailsWindowProps) => {
   // console.log(items)
 
   class Components {
-    public static CHART = (<FeatureChart data={items} />)
+    public static CHART = (
+      <Center id="chartFlex">
+        <FeatureChart data={items} />
+      </Center>
+    )
     public static STATS = (<FeatureStats data={items} />)
   }
   const [displayChart, setDisplayChart] = useState(Components.CHART as any)

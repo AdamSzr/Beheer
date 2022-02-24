@@ -6,22 +6,17 @@
   padding-right: 2vw;
   padding-left: 2vw;
   padding-top: 4vh;
+  padding-bottom: 4vh;
 }
 
 #featureDetailView {
-  height: 84vh;
-  /* margin: 10px 10px 10px 10px; */
-  /* padding-top: 7vh;
-  padding-bottom: 7vh;
-  padding-right: 2vw;
-  padding-left: 2vw; */
+  height: 92vh;
 }
 
 #featureDetailsMenu {
   background-color: #1a3076b8;
-  /* height: 55px; */
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
+  padding-top: 0.7vh;
+  height: 6vh;
 }
 
 #featureDetailsContainer {
@@ -30,7 +25,6 @@
 }
 
 #featureDetailViewBorder {
-  /* height: -webkit-fill-available; */
   border: 2px solid #4299e199;
 }
 
@@ -38,8 +32,17 @@
   /* height: 3vh; */
   border: 4px solid rgb(52, 111, 174);
 }
-
+/* 
 #featureDetailsContainer > * > canvas {
-  /* padding-top: 8vh; */
+ 
   min-height: 78vh;
+} */
+
+/* canvas {
+  max-width: 1500px;
+  max-height: 750px;
+} */
+
+#chartFlex {
+  height: 86vh;
 }
