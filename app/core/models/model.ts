@@ -61,6 +61,7 @@ export class ChartDataAdapter {
   public data: PostExecutionData[]
   public last30Days: PostExecutionData[]
   public last60Days: PostExecutionData[]
+  public chartData: ChartData
 
   constructor(data: PostExecutionData[]) {
     this.data = this.sortByDate(data)
@@ -98,7 +99,7 @@ export class ChartDataAdapter {
       if (indexOf < 0) chartData.data.push(entity)
     })
 
-    console.log(JSON.stringify(chartData))
+    this.chartData = chartData
     return chartData
   }
 }
@@ -126,6 +127,110 @@ class ChartData {
 
   constructor() {
     this.data = []
+  }
+}
+
+export class DataAdapter extends ChartDataAdapter {
+  private newCodeCountExecution
+  private oldCodeCountExecution
+  private succesfullyRunnedCode
+  private mostIntenseDay
+  private mostLazyDay
+  private avgTime
+  private errorRunnedCode
+
+  constructor(data: PostExecutionData[]) {
+    super(data)
+    // console.log({ data: data[0] })
+  }
+
+  public getTotalCountOfExecution() {
+    return this.data.length
+  }
+
+  public newCodeExecCount = () => {
+    if (!this.newCodeCountExecution) {
+      this.newCodeCountExecution = 0
+
+      this.data.forEach((i) => {
+        if (i.value == true) this.newCodeCountExecution++
+      })
+    }
+
+    return this.newCodeCountExecution
+  }
+
+  public oldCodeExecCount = () => {
+    if (!this.oldCodeCountExecution) {
+      this.oldCodeCountExecution = 0
+
+      this.data.forEach((i) => {
+        if (i.value == false) this.oldCodeCountExecution++
+      })
+    }
+
+    return this.oldCodeCountExecution
+  }
+
+  public countOfSuccesfullyRunned = () => {
+    if (!this.succesfullyRunnedCode) {
+      this.succesfullyRunnedCode = 0
+      this.data.forEach((i) => {
+        if ((i as any).executions.status == "SUCCESS") this.succesfullyRunnedCode++
+      })
+    }
+
+    return this.succesfullyRunnedCode
+  }
+
+  public getMostIntenseDay() {
+    if (!this.mostIntenseDay) {
+      const items = this.prepareChartData(this.data)
+      this.mostIntenseDay = items.data[0]
+
+      items.data.forEach((i) => {
+        if (i.countOfExecutions > this.mostIntenseDay.countOfExecutions) this.mostIntenseDay = i
+      })
+    }
+
+    // console.log({ intense: this.mostIntenseDay })
+    return this.mostIntenseDay.label + " (" + this.mostIntenseDay.countOfExecutions + ")"
+  }
+
+  public getMostLazyeDay() {
+    if (!this.mostLazyDay) {
+      const items = this.prepareChartData(this.data)
+      this.mostLazyDay = items.data[0]
+
+      items.data.forEach((i) => {
+        if (i.countOfExecutions < this.mostLazyDay.countOfExecutions) this.mostLazyDay = i
+      })
+    }
+
+    // console.log({ intense: this.mostIntenseDay })
+    return this.mostLazyDay.label + " (" + this.mostLazyDay.countOfExecutions + ")"
+  }
+
+  public getAvgTime() {
+    if (!this.avgTime) {
+      const items = this.data
+      let value = 0
+
+      items.forEach((i) => (value += Number((i as any).executions.time)))
+      this.avgTime = value
+    }
+    return Math.round(this.avgTime / this.data.length) + "ms"
+  }
+
+  public countOfErrorRunned = () => {
+    if (!this.errorRunnedCode) {
+      this.errorRunnedCode = 0
+      this.data.forEach((i) => {
+        if ((i as any).executions.status == "ERROR") this.errorRunnedCode++
+      })
+    }
+
+    return this.errorRunnedCode
   }
 }
 

@@ -19,50 +19,77 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartData,
 } from "chart.js"
 import { Chart } from "react-chartjs-2"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
-import { PostExecutionData } from "app/core/models/model"
+import { DataAdapter, PostExecutionData } from "app/core/models/model"
+import { number } from "zod"
 
 type FeatureStatsProps = {
-  data: PostExecutionData
+  adapter: DataAdapter
 }
 
-const FeatureStats = (props) => {
-  const data = props.data
+const FeatureStats = (props: FeatureStatsProps) => {
+  const adapter = props.adapter
+  // console.log({ adapter })
+
+  function calcProcentage(value: number, total: number) {
+    return ` (${((value / total).toFixed(2) as any) * 100}%)`
+  }
 
   return (
     <>
       <Box id="TableContainer">
         <Table id="FeatureStatsTable" variant="unstyled">
-          <Thead>
-            <Tr>
-              <Th>stats name</Th>
-              <Th>SUCCESS</Th>
-              <Th>REPLACED</Th>
-              <Th>FAILED</Th>
-            </Tr>
-          </Thead>
           <Tbody>
-            {CreateRow({ title: "executed times", data: [1, 2, 3] })}
-            {CreateRow({ title: "executed procentage", data: [1, 2, 3] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
-            {CreateRow({ title: "Total", data: ["-", "-", 6] })}
+            {CreateRow({
+              title: "Ilość uruchomień kodu",
+              data: [adapter.getTotalCountOfExecution()],
+            })}
+            {CreateRow({
+              title: "Ilość uruchomień nowego kodu",
+              data: [
+                adapter.newCodeExecCount() +
+                  calcProcentage(adapter.getTotalCountOfExecution(), adapter.newCodeExecCount()),
+              ],
+            })}
+            {CreateRow({
+              title: "Ilość uruchomień starego kodu",
+              data: [
+                adapter.oldCodeExecCount() +
+                  calcProcentage(adapter.oldCodeExecCount(), adapter.newCodeExecCount()),
+              ],
+            })}
+            {CreateRow({
+              title: "Ilość pomyślnych uruchomień kodu",
+              data: [
+                adapter.countOfSuccesfullyRunned() +
+                  calcProcentage(adapter.countOfSuccesfullyRunned(), adapter.newCodeExecCount()),
+                ,
+              ],
+            })}
+            {CreateRow({
+              title: "Ilość negatywnych uruchomień kodu",
+              data: [
+                adapter.countOfErrorRunned() +
+                  calcProcentage(adapter.countOfErrorRunned(), adapter.newCodeExecCount()),
+              ],
+            })}
+            {CreateRow({
+              title: "Najwięcej wykonań kodu",
+              data: [adapter.getMostIntenseDay()],
+            })}
+            {CreateRow({
+              title: "Najmniej wykonań kodu",
+              data: [adapter.getMostLazyeDay()],
+            })}
+            {CreateRow({
+              title: "Średni czas wykonywania kodu",
+              data: [adapter.getAvgTime()],
+            })}
+
+            {CreateRow({ title: "Total", data: ["-"] })}
           </Tbody>
         </Table>
       </Box>

@@ -5,7 +5,7 @@ import FeatureStats from "./featureStats"
 import getAllExecutuionData from "app/core/queries/postExecutuionData/getAllExecutionData"
 import { useQuery } from "blitz"
 import getFeatureByIdOrName from "app/core/queries/feature/getFeatureByIdOrName"
-import { Feature } from "app/core/models/model"
+import { DataAdapter, Feature } from "app/core/models/model"
 
 type FeatureDetailsWindowProps = {
   feature: Feature
@@ -14,15 +14,16 @@ type FeatureDetailsWindowProps = {
 const FeatureDetailsWindow = (props: FeatureDetailsWindowProps) => {
   const items = useQuery(getAllExecutuionData, { uuid: props.feature.uuid })[0] as any
 
+  const adapter = new DataAdapter(items)
   // console.log(items)
 
   class Components {
     public static CHART = (
       <Center id="chartFlex">
-        <FeatureChart data={items} />
+        <FeatureChart adapter={adapter} />
       </Center>
     )
-    public static STATS = (<FeatureStats data={items} />)
+    public static STATS = (<FeatureStats adapter={adapter} />)
   }
   const [displayChart, setDisplayChart] = useState(Components.CHART as any)
 

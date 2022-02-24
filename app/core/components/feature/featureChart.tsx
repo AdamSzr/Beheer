@@ -8,7 +8,7 @@ import { CreateArray, GenerateRandomString, RandomInt } from "app/utils/base"
 import { CHART_COLORS, color, COLORS, namedColor } from "app/utils/chart/utils"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import { ChartDataAdapter, ExecutionData, PostExecutionData } from "app/core/models/model"
+import { ChartDataAdapter, DataAdapter, ExecutionData, PostExecutionData } from "app/core/models/model"
 import { Box } from "@chakra-ui/layout"
 import { Button, ButtonGroup } from "@chakra-ui/react"
 import {
@@ -26,24 +26,16 @@ import { Chart } from "react-chartjs-2"
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 type FeatureChartProps = {
-  data: PostExecutionData[]
+  adapter: DataAdapter
   onSelected?: () => void
 }
 
 const FeatureChart = (props: FeatureChartProps) => {
-  // let postExecDTO = props.postExecDTOS as PostExecDTO[]
-  // postExecDTO = postExecDTO.filter((i) => i.executedWithStatus == ExecutedWithStatus.FAILED)
-  // postExecDTO = GetOnlyFromLastMonths(postExecDTO, 1)
-  // postExecDTO = SortFeaturesByDate(postExecDTO)
 
-  // const dataToPresent = PrepareDataToPresent(postExecDTO)
-
-  const adapter = new ChartDataAdapter(props.data)
+  const adapter = props.adapter
   const toPresent = adapter.prepareChartData(adapter.last30Days)
 
   const [title, setTitle] = useState("Wykres")
-  // const [listOfSelected, setListOfSelected] = useState([] as ChartPointData[])
-  // const onDataSelected = props.onSelected
 
   const data = {
     labels: toPresent.data.map((i) => i.label), // dataToPresent
@@ -81,54 +73,10 @@ const FeatureChart = (props: FeatureChartProps) => {
   }
 
   const options = {
-    // maintainAspectRatio: true,
-    // responsive: true,
     events: ["mousemove", "click"],
     interaction: {
-      // picking line not dots.
       intersect: false,
       mode: "index",
-    },
-    onHover: (e, elements, chart) => {
-      // console.log(e)
-      // console.log({e,elements,chart})
-      // console.log(e.chart.tooltip.dataPoints[0].label)
-    },
-    onClick: (e, elements, chart) => {
-      // console.log(e)
-      // console.log({from_day:e.})
-      try {
-        const selected = GetChartPointData(e, elements, chart)
-        // console.log(selected.label)
-        // console.log(listOfSelected.length)
-        // setListOfSelected((acct) => acct.concat(selected))
-        // setTitle((act) => {
-        //   // console.log(listOfSelected.length)
-        //   if (listOfSelected.length % 2 == 0) {
-        //     return "Selected from: " + selected.label
-        //   } else {
-        //     // console.log(listOfSelected)
-        //     // console.log(listOfSelected[listOfSelected.length - 1]?.label)
-        //     const range = GetSelectedRange(
-        //       postExecDTO,
-        //       listOfSelected[listOfSelected.length - 1]?.label,
-        //       selected.label
-        //     )
-        //     //TODO: Download this as JSON file.
-        //     // console.log(range)
-        //     onDataSelected(range)
-        //     return (
-        //       "Selected from: " +
-        //       listOfSelected[listOfSelected.length - 1]?.label +
-        //       "Selected to: " +
-        //       selected.label
-        //     )
-        //   }
-        // })
-        // console.log(GetChartPointData(e, elements, chart))
-      } catch (error) {
-        console.error("Unable to pick a point")
-      }
     },
     scales: {
       y: {
@@ -190,53 +138,8 @@ const FeatureChart = (props: FeatureChartProps) => {
   )
 }
 
-// function SortFeaturesByDate(featureList: PostExecDTO[]) {
-//   return featureList.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
-// }
-
-// function GetOnlyFromLastMonths(featureList: PostExecDTO[], months = 1): PostExecDTO[] {
-//   var lastMonthDate = DateAddDays(Date.now(), -30 * months)
-//   return featureList.filter((item) => item.createdAt > lastMonthDate)
-// }
-
-// function PrepareDataToPresent(featureList: PostExecDTO[]) {
-//   let dict = {}
-
-//   featureList.forEach((item) => {
-//     if (dict[item.createdAt.toLocaleDateString("pl-PL")] === undefined)
-//       dict[item.createdAt.toLocaleDateString("pl-PL")] = 0
-
-//     dict[item.createdAt.toLocaleDateString("pl-PL")] =
-//       dict[item.createdAt.toLocaleDateString("pl-PL")] + 1
-//   })
-//   return dict
-// }
-
-// function ParseStringToDate(dateString: string): Date {
-//   const [day, month, year] = dateString.split(".") as any
-//   return new Date(Number(year), Number(month) - 1, Number(day))
-// }
-
-// function GetSelectedRange(dto: PostExecDTO[], from: string | undefined, to: string): PostExecDTO[] {
-//   // console.log(dto)
-
-//   // console.log({from})
-//   // console.log({to})
-//   const dateFrom = ParseStringToDate(from as any)
-//   const dateTo = ParseStringToDate(to)
-//   // console.log({dateFrom,dateTo})
-//   const items = dto.filter((item) => {
-//     const time = item.createdAt
-//     return time >= dateFrom && time < dateTo
-//   })
-//   // console.log(items)
-//   return items
-// }
-
 function GetChartPointData(event, elements, chart): ChartPointData {
-  // console.log(event,elements)
-  // console.log(chart.tooltip.dataPoints[0].label)
-  // console.log(chart.tooltip.dataPoints[0].raw)
+
   let dataPoint = new ChartPointData()
   dataPoint.label = chart.tooltip.dataPoints[0].label
   dataPoint.value = chart.tooltip.dataPoints[0].raw
@@ -251,9 +154,5 @@ class ChartPointData {
   parse = () => this.label + " " + this.value
 }
 
-class MinMaxFromDataSet {
-  min: Date
-  max: Date
-}
 
 export default FeatureChart
