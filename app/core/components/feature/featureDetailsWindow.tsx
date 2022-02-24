@@ -14,7 +14,7 @@ type FeatureDetailsWindowProps = {
 const FeatureDetailsWindow = (props: FeatureDetailsWindowProps) => {
   const items = useQuery(getAllExecutuionData, { uuid: props.feature.uuid })[0] as any
 
-  console.log(items)
+  // console.log(items)
 
   class Components {
     public static CHART = (<FeatureChart data={items} />)

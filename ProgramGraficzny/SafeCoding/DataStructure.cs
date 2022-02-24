@@ -15,6 +15,7 @@ namespace SafeCoding
   {
     public string uuid { get; set; }
     public bool value { get; set; }
+    public string name {get;set;}
     public Execution main { get; set; }
     public Execution replace { get; set; }
     public string Serialize() => System.Text.Json.JsonSerializer.Serialize(this);

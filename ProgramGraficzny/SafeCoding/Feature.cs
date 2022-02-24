@@ -40,7 +40,9 @@ namespace SafeCoding
     {
       ExecutionResult result = new();
       result.uuid = uuid;
-      result.value = connector.Download().value;
+      var response = connector.Download();
+      result.value = response.value;
+      result.name = response.name;
       if (result.value)
       {
         result.main = RunCode(newCode);

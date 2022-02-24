@@ -24,7 +24,7 @@ import {
   IconButton,
 } from "@chakra-ui/react"
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { PostExecutionData, Feature} from "app/core/models/model"
+import { PostExecutionData, Feature } from "app/core/models/model"
 import { ENABLE_SAVING_CHART_DATA } from "app/config"
 import FeatureDetailsWindow from "app/core/components/feature/featureDetailsWindow"
 
@@ -57,7 +57,7 @@ const ShowFeaturePage: BlitzPage = () => {
   const featureId = useParam("featureId", "number")
 
   const [feature] = useQuery(getFeature, { id: featureId })
-  console.log({ feature })
+  // console.log({ feature })
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {/* <IconButton

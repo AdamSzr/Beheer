@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getFeature from "app/core/queries/feature/getFeatureByIdOrName"
-import updateFeature from "app/core/mutations/updateFeature"
+import updateFeature from "app/core/mutations/turnOffFeature"
 
 const EditFeature = () => {
   const router = useRouter()

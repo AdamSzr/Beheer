@@ -8,7 +8,7 @@ import { CreateArray, GenerateRandomString, RandomInt } from "app/utils/base"
 import { CHART_COLORS, color, COLORS, namedColor } from "app/utils/chart/utils"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import { ExecutionData, PostExecutionData } from "app/core/models/model"
+import { ChartDataAdapter, ExecutionData, PostExecutionData } from "app/core/models/model"
 import { Box } from "@chakra-ui/layout"
 import { Button, ButtonGroup } from "@chakra-ui/react"
 import {
@@ -37,19 +37,44 @@ const FeatureChart = (props: FeatureChartProps) => {
   // postExecDTO = SortFeaturesByDate(postExecDTO)
 
   // const dataToPresent = PrepareDataToPresent(postExecDTO)
-  const defaultTitle = "Chart.js Line Chart"
-  const [title, setTitle] = useState(defaultTitle)
-  const [listOfSelected, setListOfSelected] = useState([] as ChartPointData[])
-  const onDataSelected = props.onSelected
+
+  const adapter = new ChartDataAdapter(props.data)
+  const toPresent = adapter.prepareChartData(adapter.last30Days)
+
+  const [title, setTitle] = useState("Wykres")
+  // const [listOfSelected, setListOfSelected] = useState([] as ChartPointData[])
+  // const onDataSelected = props.onSelected
 
   const data = {
-    labels: Object.keys(["raz", "dwa", "trzy"]), // dataToPresent
+    labels: toPresent.data.map((i) => i.label), // dataToPresent
     datasets: [
       {
-        label: "errors",
-        data: Object.values([1, 2, 3]), // dataToPresent
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
+        label: "ilość uruchomień",
+        data: toPresent.data.map((i) => i.countOfExecutions), // dataToPresent
+        fill: false,
+        borderColor: "rgb(255, 22, 132)",
+        backgroundColor: "rgb(255,255,255)",
+        events: [],
+      },
+      {
+        label: "ilość pomyślnych uruchomień kodu",
+        data: toPresent.data.map((i) => i.countOfSuccess), // dataToPresent
+        fill: false,
+        borderColor: "rgb(77, 22, 132)",
+        events: [],
+      },
+      {
+        label: "ilość wyjątków",
+        data: toPresent.data.map((i) => i.countOfErrors), // dataToPresent
+        fill: false,
+        borderColor: "rgb(170, 120, 12)",
+        events: [],
+      },
+      {
+        label: "ilość uruchomień nowego kodu",
+        data: toPresent.data.map((i) => i.countOfTrueValue), // dataToPresent
+        fill: false,
+        borderColor: "rgb(255, 22, 23)",
         events: [],
       },
     ],
@@ -76,7 +101,7 @@ const FeatureChart = (props: FeatureChartProps) => {
         const selected = GetChartPointData(e, elements, chart)
         // console.log(selected.label)
         // console.log(listOfSelected.length)
-        setListOfSelected((acct) => acct.concat(selected))
+        // setListOfSelected((acct) => acct.concat(selected))
         // setTitle((act) => {
         //   // console.log(listOfSelected.length)
         //   if (listOfSelected.length % 2 == 0) {
@@ -137,7 +162,7 @@ const FeatureChart = (props: FeatureChartProps) => {
     },
     elements: {
       line: {
-        borderWidth: 1.5,
+        borderWidth: 2.5,
         tension: 0.4,
         backgroundColor: "#fff",
       },

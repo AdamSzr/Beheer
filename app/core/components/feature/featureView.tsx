@@ -14,7 +14,7 @@ import getFeatures from "app/core/queries/feature/getFeatures"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { GenerateRandomString, RandomInt } from "app/utils/base"
 import { Feature } from "app/core/models/model"
-import updateFeature from "app/core/mutations/updateFeature"
+import updateFeature from "app/core/mutations/turnOffFeature"
 
 import { Box, Center, GridItem, Text } from "@chakra-ui/layout"
 import {

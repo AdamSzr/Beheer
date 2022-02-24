@@ -7,7 +7,7 @@ namespace ProgramGraficzny
   using SafeCoding;
   public partial class Form1 : Form
   {
-    private readonly string FLAG_ZAPISYWANIE_OBRAZKA = "76c5481a-1c03-4109-a20b-56256fcc55c5";
+    private readonly string FLAG_OBRAZKI = "93f29b48-9dce-4c05-824b-4739b0fc7b1b";
 
     private Bitmap imgBase;
     private Bitmap imgCMY;
@@ -146,7 +146,7 @@ namespace ProgramGraficzny
     private void btnSave_Click(object sender, EventArgs e)
     {
 
-      Feature.ControledBy(FLAG_ZAPISYWANIE_OBRAZKA)
+      Feature.ControledBy(FLAG_OBRAZKI)
       .Replace(() =>
       {
         string message = "This functionality is not ready.";

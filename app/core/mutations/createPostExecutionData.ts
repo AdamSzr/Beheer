@@ -4,7 +4,6 @@ import { z } from "zod"
 import { PostExecutionData, ExecutionData } from "app/core/models/model"
 import db from "db"
 
-
 export default resolver.pipe(async (execResult: PostExecutionData) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   // const prisma = new PrismaClient()

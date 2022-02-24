@@ -24,7 +24,8 @@ export class PostExecutionData {
   value: boolean
   main: ExecutionData
   replace: ExecutionData
-  createdAt?: number
+  createdAt: number
+  name?: string
 
   static random(feature: Feature) {
     let x = new PostExecutionData()
@@ -56,28 +57,98 @@ export class ExecutionData {
   }
 }
 
-// model ExecutionResult {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
+export class ChartDataAdapter {
+  public data: PostExecutionData[]
+  public last30Days: PostExecutionData[]
+  public last60Days: PostExecutionData[]
 
-//   value   Boolean
-//   uuid    String  @unique
-//   feature Feature @relation(fields: [uuid], references: [uuid])
-//   status  Status
+  constructor(data: PostExecutionData[]) {
+    this.data = this.sortByDate(data)
+    this.last30Days = this.getFromLastNDays(30)
+    this.last60Days = this.getFromLastNDays(60)
+  }
 
-//   executions Execution[]
-// }
+  sortByDate(items: PostExecutionData[]) {
+    return items.sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1))
+  }
 
-// model Execution {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   errors    String
-//   time      Decimal
-//   status    Boolean
-//   isMain    Boolean
+  getFromLastNDays(Ndays: number) {
+    const now = new Date()
+    const daySince = DateAddDays(now, -1 * Ndays).getTime()
 
-//   ExecutionResult   ExecutionResult? @relation(fields: [executionResultId], references: [id])
-//   executionResultId Int?
-// }
+    const x = this.data.filter((item) => item.createdAt > daySince)
+    return x
+  }
+
+  public prepareChartData(fromData: PostExecutionData[]): ChartData {
+    const chartData = new ChartData()
+
+    // Policzenie ilości uruchomień
+    fromData.forEach((item) => {
+      const label = new Date(item.createdAt).toLocaleDateString()
+      const indexOf = chartData.data.findIndex((i) => i.label == label)
+      const entity =
+        indexOf < 0 ? new ChartEntity(label, 1) : (chartData.data[indexOf] as ChartEntity)
+
+      item.value ? entity.countOfTrueValue++ : entity.countOfFalseValue++
+
+      entity.countOfExecutions++
+
+      ;(item as any).executions.errors ? entity.countOfErrors++ : entity.countOfSuccess++
+
+      if (indexOf < 0) chartData.data.push(entity)
+    })
+
+    console.log(JSON.stringify(chartData))
+    return chartData
+  }
+}
+
+class ChartEntity {
+  label: string
+  countOfExecutions: number
+  countOfSuccess: number
+  countOfErrors: number
+  countOfTrueValue: number
+  countOfFalseValue: number
+
+  constructor(label?: string, numOfExecutions = 0) {
+    if (label) this.label = label
+    if (numOfExecutions) this.countOfExecutions = numOfExecutions
+
+    this.countOfSuccess = 0
+    this.countOfTrueValue = 0
+    this.countOfErrors = 0
+  }
+}
+
+class ChartData {
+  data: ChartEntity[]
+
+  constructor() {
+    this.data = []
+  }
+}
+
+
+
+export class MailOptions {
+  from: string
+  to: string
+  subject: string
+  html: string
+  name: string
+
+  constructor(to: string, flagnName?: string) {
+    this.to = to
+    this.from = "beheer.projekt@gmail.com"
+    this.subject = `Beheer - ${flagnName ? flagnName : "Twoja"} flaga została wyłączona.`
+    this.html = this.generateHTML()
+  }
+  private generateHTML() {
+    return `
+    <h2>Projekt Beheer</h2>
+    <p>Przechwyciliśmy błąd wykonania głównego kodu. Aby zapewnić bezpieczeństwo i dalsze działanie Twojej aplikacji przełączyliśmy automatycznie flagę.</p>
+    `
+  }
+}
