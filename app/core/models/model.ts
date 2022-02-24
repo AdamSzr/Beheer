@@ -93,7 +93,6 @@ export class ChartDataAdapter {
       item.value ? entity.countOfTrueValue++ : entity.countOfFalseValue++
 
       entity.countOfExecutions++
-
       ;(item as any).executions.errors ? entity.countOfErrors++ : entity.countOfSuccess++
 
       if (indexOf < 0) chartData.data.push(entity)
@@ -130,8 +129,6 @@ class ChartData {
   }
 }
 
-
-
 export class MailOptions {
   from: string
   to: string
@@ -139,9 +136,10 @@ export class MailOptions {
   html: string
   name: string
 
-  constructor(to: string, flagnName?: string) {
+  constructor(to: string, flagnName: string) {
     this.to = to
     this.from = "beheer.projekt@gmail.com"
+    this.name = flagnName
     this.subject = `Beheer - ${flagnName ? flagnName : "Twoja"} flaga została wyłączona.`
     this.html = this.generateHTML()
   }
@@ -149,6 +147,7 @@ export class MailOptions {
     return `
     <h2>Projekt Beheer</h2>
     <p>Przechwyciliśmy błąd wykonania głównego kodu. Aby zapewnić bezpieczeństwo i dalsze działanie Twojej aplikacji przełączyliśmy automatycznie flagę.</p>
+    <p>Wyłączono flagę: ${this.name} </p>
     `
   }
 }

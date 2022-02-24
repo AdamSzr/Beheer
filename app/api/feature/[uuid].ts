@@ -24,23 +24,25 @@ const GetFeatureValue: Middleware = async (req, res, next) => {
     const postExecResult = await createPostExecutionData(result, null as any)
     console.log({ postExecResult })
 
-    const featureWithUser = (await getUserByFeatureUUID(postExecResult.uuid)) as any
-    console.log({ featureWithUser })
+    if (postExecResult.value == true && postExecResult.executions?.errors != null) {
+      await turnDownFeature(postExecResult)
+    }
 
-    await turnOffFeature(
-      { where: { uuid: featureWithUser.uuid }, data: { value: false } },
-      null as any
-    )
-    await sendMail(featureWithUser.user.email, featureWithUser.name)
-    // flagSwitchedMailer({ to: "adam.szr98@gmail.com", message: "Udalo sie" })
-
-    // const replace = await saveExecDetails(execResult.ReplaceExecution, null as any)
-    // const withcode = await saveExecDetails(execResult.WithExecution, null as any)
-    // console.log({ replace, withcode })
     return res.status(201).json(postExecResult)
   }
 
   return res.status(404).json({ error: "This endpoint is available only for GET|POST method." })
+}
+
+async function turnDownFeature(postExecResult: any) {
+  const featureWithUser = (await getUserByFeatureUUID(postExecResult.uuid)) as any
+  console.log({ featureWithUser })
+
+  await turnOffFeature(
+    { where: { uuid: featureWithUser.uuid }, data: { value: false } },
+    null as any
+  )
+  await sendMail(featureWithUser.user.email, featureWithUser.name)
 }
 
 async function sendMail(email: string, featureName: string) {
