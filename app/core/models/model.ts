@@ -49,7 +49,7 @@ export class ExecutionData {
   static random(featureValue: boolean) {
     let x = new ExecutionData()
     x.isMain = featureValue
-    x.time = RandomInt(1, 50_000)
+    x.time = RandomInt(1, 1_000)
     x.status = Randomfrom(["SUCCESS", "ERROR"])
     if (x.status === "ERROR") x.errors = faker.git.commitMessage()
 

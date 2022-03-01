@@ -1,0 +1,55 @@
+Uwagi, które pojawiają się w większości prac:
+
+1. Samotne literki na końcu wiersza do usunięcia.
+
+2. Cytaty:
+tak nie:
+ poziomu.” [4]
+tylko tak:
+poziomu” [4].
+Kropka zawsze na końcu i przed kropką dajemy numer ze spisu.
+
+3. Proszę opisać krótko (1 zdanie wystarczy) wszystkie rysunki i tabele, które nie zostały opisane, ze wskazaniem numeru rysunku, którego opis dotyczy. Przed każdym rysunkiem powinien być ten ww. opis umieszczony.
+Np.
+Na rysunku nr 1 pokazano ....
+lub
+...., co pokazano w tabeli nr 7
+I potem dopiero występuje rysunek lub tabela opisana powyżej
+
+4. Piszemy bezosobowo, czyli zamiast "W takim przypadku pominę to pole" piszemy "W takim przypadku pominięto to pole".
+
+5. Każdy rysunek, fragment kodu i tabela musi mieć nr ze spisu literatury lub dopisek [opracowanie własne]
+Czyli np. taki zapis pod rysunkiem jest poprawny:
+Rys. 28. Widok podsumowania zamówienia [opracowanie własne]
+lub
+Rys. 15. Szablon Porto Admin [5]
+
+5a. Kod staramy się ścieśnić na stronie,  żeby było miejsce na podpis pod nim (fragment kodu podpisujemy jako rysunek).
+
+6. Tekst robimy wyjustowany, nie używamy shift+Enter do przejścia do nowej linii, tylko tzw. "sztywną spację" - Ctrl + Shift + Spacja (MS Word)
+
+7. Str. tytułowa. Powinno być:
+Praca wykonana pod kierunkiem
+dra inż. Artura Zacniewskiego
+lub dr. inż. Artura Zacniewskiego
+
+8. Angielskie skróty rozwijamy jak poniżej (kursywa dla tekstu angielskiego):
+ORM (ang. Object-Relational Mapping) - tutaj piszemy czym jest dane zagadnienie.
+
+9. Nazwy funkcji, klas itp. można pisać kursywą w opisie działania programu, aplikacji, np. erode()
+
+10. Słowo 'jakby' wg mnie powinno być zakazane w pracach inż. z informatyki :)
+Na poparcie moich słów fragment filmu:
+https://www.youtube.com/watch?v=--1ycAifHYo
+
+11. Trzeba cytować pozycje, z których się korzysta w pracy. System antyplagiatowy wyłapuje takie przypadki.
+
+12. Proszę pamiętać o podpisaniu oświadczenia studenta w wydrukowanej pracy.
+
+13. W bibliografii przy książkach stosujemy zapis: autor, tytuł, wydawnictwo, rok wydania. Przy linkach: adres strony, krótki opis (np. strona z dokumentacją frameworka Django), data dostępu do strony.
+
+14. Proszę pamiętać o streszczeniach - po polsku i po angielsku, ze 2-3 akapity.
+
+15. Ilość czy liczba: http://wittamina.pl/ilosc-czy-liczba/
+
+16. Sposób pisania pracy inż.: http://wniuo.iq.pl/wp-content/uploads/2017/07/Wytyczne_dla_autorow_prac_dyplomowych_wykonywanych_na_WNiUO.pdf

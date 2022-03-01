@@ -10,7 +10,7 @@ import db from "./index"
  * or https://github.com/Marak/Faker.js to easily generate
  * realistic data.
  */
-const NUMBER_OF_EXECUTION_PER_FEATURE = 20_000
+const NUMBER_OF_EXECUTION_PER_FEATURE = 3_000
 
 async function saveCustomPostExecutionData(data: PostExecutionData, createdAt: number | Date) {
   console.log({ data })
