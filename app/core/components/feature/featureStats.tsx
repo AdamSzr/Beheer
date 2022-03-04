@@ -35,7 +35,7 @@ const FeatureStats = (props: FeatureStatsProps) => {
   // console.log({ adapter })
 
   function calcProcentage(value: number, total: number) {
-    return ` (${((value / total).toFixed(2) as any) * 100}%)`
+    return ` (${((total / value).toFixed(2) as any) * 100}%)`
   }
 
   return (

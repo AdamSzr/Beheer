@@ -53,12 +53,14 @@ const FeatureChart = (props: FeatureChartProps) => {
         data: toPresent.data.map((i) => i.countOfSuccess), // dataToPresent
         fill: false,
         borderColor: "rgb(77, 22, 132)",
+        hidden:true,
         events: [],
       },
       {
         label: "ilość wyjątków",
         data: toPresent.data.map((i) => i.countOfErrors), // dataToPresent
         fill: false,
+        hidden:true,
         borderColor: "rgb(170, 120, 12)",
         events: [],
       },
@@ -66,6 +68,7 @@ const FeatureChart = (props: FeatureChartProps) => {
         label: "ilość uruchomień nowego kodu",
         data: toPresent.data.map((i) => i.countOfTrueValue), // dataToPresent
         fill: false,
+        hidden:true,
         borderColor: "rgb(255, 22, 23)",
         events: [],
       },
