@@ -22,8 +22,7 @@ export class Feature {
 export class PostExecutionData {
   uuid: string
   value: boolean
-  main: ExecutionData
-  replace: ExecutionData
+  execution: ExecutionData
   createdAt: number
   name?: string
 
@@ -31,12 +30,19 @@ export class PostExecutionData {
     let x = new PostExecutionData()
     x.uuid = feature.uuid
     x.value = feature.value
-    if (x.value) x.main = ExecutionData.random(x.value)
-    else x.replace = ExecutionData.random(x.value)
-
+    x.execution = ExecutionData.random(x.value)
     x.createdAt = DateAddDays(new Date(), RandomInt(-90, 0)).getTime()
 
     return x
+  }
+}
+
+export class FeatureInfo {
+  name: string
+  value: boolean
+  constructor(name: string, value: boolean) {
+    this.name = name
+    this.value = value
   }
 }
 

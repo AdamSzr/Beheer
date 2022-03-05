@@ -1,4 +1,4 @@
-import { PostExecutionData } from "app/core/models/model"
+import { Feature, FeatureInfo, PostExecutionData } from "app/core/models/model"
 import { Middleware } from "blitz"
 import db from "db"
 import createPostExecutionData from "app/core/mutations/createPostExecutionData"
@@ -11,10 +11,11 @@ const GetFeatureValue: Middleware = async (req, res, next) => {
   console.log(">> Entered <<")
 
   if (req.method === "GET") {
-    console.log(req.query.uuid)
-    var x = await db.feature.findFirst({ where: { uuid: req.query.uuid as string } })
-    console.log({ value: x?.value ? x?.value : false, name: x?.name })
-    return res.status(202).json({ value: x?.value ? x?.value : false, name: x?.name })
+    const featureUuid = req.query.uuid as string
+    var x = (await db.feature.findFirst({ where: { uuid: featureUuid } })) as Feature
+    const featureInfo = new FeatureInfo(x.name, x.value)
+    console.log({ featureInfo })
+    return res.status(202).json(featureInfo)
   }
 
   if (req.method === "POST") {

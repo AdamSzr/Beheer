@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Adam\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj": {}
+    "C:\\Users\\School\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Adam\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj": {
+    "C:\\Users\\School\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Adam\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj",
+        "projectUniqueName": "C:\\Users\\School\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj",
         "projectName": "ProgramGraficzny",
-        "projectPath": "C:\\Users\\Adam\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj",
-        "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Adam\\Desktop\\Beheer\\ProgramGraficzny\\obj\\",
+        "projectPath": "C:\\Users\\School\\Desktop\\Beheer\\ProgramGraficzny\\ProgramGraficzny.csproj",
+        "packagesPath": "C:\\Users\\School\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\School\\Desktop\\Beheer\\ProgramGraficzny\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\School\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0-windows"
@@ -55,7 +55,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

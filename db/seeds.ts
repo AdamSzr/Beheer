@@ -14,8 +14,6 @@ const NUMBER_OF_EXECUTION_PER_FEATURE = 165
 
 async function saveCustomPostExecutionData(data: PostExecutionData, createdAt: number | Date) {
   console.log({ data })
-  // const execDetailsCreate = [] as any
-  const obj = data.value ? data.main : data.replace
 
   const exec = await db.executionResult.create({
     include: {
@@ -26,7 +24,7 @@ async function saveCustomPostExecutionData(data: PostExecutionData, createdAt: n
       uuid: data.uuid,
       createdAt: new Date(createdAt),
       executions: {
-        create: obj,
+        create: data.execution,
       },
     },
   })

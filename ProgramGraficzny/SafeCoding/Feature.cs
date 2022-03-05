@@ -45,12 +45,12 @@ namespace SafeCoding
       result.name = response.name;
       if (result.value)
       {
-        result.main = RunCode(newCode);
-        result.main.isMain = true;
+        result.execution = RunCode(newCode);
+        result.execution.isMain = true;
       }
       else
       {
-        result.replace = RunCode(oldCode);
+        result.execution = RunCode(oldCode);
       }
 
 

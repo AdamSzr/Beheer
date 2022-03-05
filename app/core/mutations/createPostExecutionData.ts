@@ -7,9 +7,7 @@ import db from "db"
 export default resolver.pipe(async (execResult: PostExecutionData) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   // const prisma = new PrismaClient()
-  console.log({ execResult })
-  // const execDetailsCreate = [] as any
-  const obj = execResult.value ? execResult.main : execResult.replace
+  const obj = execResult.execution
 
   const exec = await db.executionResult.create({
     include: {
@@ -23,6 +21,6 @@ export default resolver.pipe(async (execResult: PostExecutionData) => {
       },
     },
   })
-  console.log({ exec })
+
   return exec
 })
