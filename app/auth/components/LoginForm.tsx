@@ -21,7 +21,6 @@ export const LoginForm = (props: LoginFormProps) => {
   const [errorView, setErrorView] = useState("" as any)
   const onLoginSuccess = props.onSuccess as any
   const language = props.language
-  // console.log({language})
 
   const onSubmitCb = async (e) => {
     e.preventDefault()

@@ -21,13 +21,15 @@ import { sortFeaturesByDateFromLatestToOldest } from "app/utils/features/utils"
 import { AppViews } from "app/lang/available"
 
 const FeatureList = (props) => {
-  const language = props.lang
-  const translation = language.get(AppViews.features)
-  // console.log({translation})
   const currentUser = useCurrentUser()
   const featuresBase = useQuery(getFeatures, { userId: currentUser?.id })[0]
+  const sortedFeatures = sortFeaturesByDateFromLatestToOldest(featuresBase)
+  const [features, setFeatures] = useState(sortedFeatures)
 
-  const [features, setFeatures] = useState(sortFeaturesByDateFromLatestToOldest(featuresBase))
+
+  const language = props.lang
+  const translation = language.get(AppViews.features)
+
   const [deleteFeatureMutation] = useMutation(deleteFeature) as any
   const [updateFeatureMutation] = useMutation(updateFeature) as any
   const [allFeatures, setAllFeatures] = useState(features)
@@ -113,10 +115,6 @@ const FeatureList = (props) => {
       />
       <Table variant="simple" size="sm" id="featureTable">
         <Tbody>
-          {/* <CreateFeatureRow
-            onCreateSuccess={updateAfterSuccessfulCreate}
-            placeholder={translation.inputCreate.placeholder}
-          /> */}
           {features.map((f) => {
             return (
               <FeatureView
