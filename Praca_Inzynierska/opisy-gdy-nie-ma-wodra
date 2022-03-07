@@ -1,8 +1,0 @@
-Blitz.js
-To framework inspirowany na Ruby on Rails przeznaczony dla programistów full-stack, bazuje na innym JavaScriptowym frameworku next.js. Tworząc nowy projekt w Blitz otrzymyjemy na start wiele domyślnych rozwiązań które mają ułatwić pracę programiście i sprawić, że zajmiemy się pracą nad rozwijaniem projektu a nie budowaniem i przygotowywaniem. Jest to możliwe dzięki wbudowanym rozwiązaniom takim jak: 
-- zero-api data layer
-- autentykacja
-- autoryzacja
-- domyślna struktura podziału plików
-
-Next.js
