@@ -8,7 +8,6 @@
 @import "basic_forms.css";
 @import "features_new.css";
 @import "feature_details_window.css";
-@import "calc.css";
 
 #BackgroundBoard {
   min-height: 100vh;

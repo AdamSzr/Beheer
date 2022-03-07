@@ -3,11 +3,12 @@ import { useMutation, Router, Routes } from "blitz"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
 import React, { useState } from "react"
+import {z} from "zod"
 import { Text, Center, Input, IconButton, FormControl, Box, Heading, Link } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
-import { PasswordValidator, SIGNUP_PASSW_VALIDATION } from "app/config"
+import {  SIGNUP_PASSW_VALIDATION } from "app/config"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type SignupFormProps = {
@@ -15,33 +16,51 @@ type SignupFormProps = {
   language: any
 }
 
+
+
+
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorView, setErrorView] = useState("" as any)
+  const [errors, setErrors] = useState("" as any)
   const language = props.language
-  // console.log({ language })
+
+
+  const SignUpValidation = (email: string, password: string) => {
+    const passwValidation = z.string()
+    .min(8, "Hasło nie może być krótsze niz 8 znaków")
+    .max(30, "Hasło nie może być dłuższe niz 30 znaków")
+    .regex(/.*[A-Z]/, "Hasło musi zawierać conajmniej 1 dużą literę")
+    .regex(/.*[0-9]/, "Hasło musi zawierać conajmniej 1 cyfrę")
+    .regex(/.*[a-z]/, "Hasło musi zawierać conajmniej 1 małą literę")
+    .regex(/.*[^A-Za-z0-9]/, "Hasło musi zawierać conajmniej 1 znak specjalny")
+    const emailValidation = z.string().email("Wprowadzony email wygląda na niepoprawny")
+
+    try{
+     passwValidation.parse(password)
+     emailValidation.parse(email)
+    }
+    catch(e){
+     setErrors(() => e.errors.map(e => e.message).map(str => <p key={Math.random()}> {str} </p>))
+     return false
+    }
+    return true
+  }
 
   const onSubmitCb = async (e) => {
     e.preventDefault()
-    console.log("signup-submit-Click")
-    console.log({ name, email, password })
-    try {
-      Signup.parse({ email, password })
-
-      if (SIGNUP_PASSW_VALIDATION)
-        if (!PasswordValidator(password)) {
-          throw new Error("Password does not match validation.")
-        }
-
-      await signupMutation({ email, password })
-      Router.push(Routes.FullScreen())
-    } catch (e) {
+    // console.log("signup-submit-Click")
+    console.log({ email, password })
+    if (!SignUpValidation(email,password)) {
       setErrorView(true)
-      console.log("sign-up error")
+      return
     }
+
+    await signupMutation({ email, password })
+    Router.push(Routes.FullScreen())
   }
 
   return (
@@ -53,7 +72,7 @@ export const SignupForm = (props: SignupFormProps) => {
         <ErrorViewComponent
           title="Błąd rejestracji"
           error={
-            "Upewnij się, że hasło ma od 8 do 30 znaków, i zawiera conajmniej 1 małą literę, wielką, i znak"
+            errors
           }
           statusCode={501}
           closeCb={() => {
@@ -81,6 +100,8 @@ export const SignupForm = (props: SignupFormProps) => {
             type="password"
             onChange={(e) => {
               setPassword(e.target.value)
+              setErrorView(false)
+              setErrors("")
             }}
             display="block"
             placeholder={language.inputPassw.placeholder}
