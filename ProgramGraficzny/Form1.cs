@@ -7,7 +7,7 @@ namespace ProgramGraficzny
   using SafeCoding;
   public partial class Form1 : Form
   {
-    private readonly string FLAG_EDYCJA_OBRAZKOW = "326da4bf-4eae-4033-a353-96bbaf3e9074";
+    private readonly string FLAG_OBRAZKI = "84ead0ba-3e80-4471-9c0d-2a7c2240902b";
     private Bitmap imgBase;
     private Bitmap imgCMY;
     private Bitmap imgGray;
@@ -145,7 +145,7 @@ namespace ProgramGraficzny
     private void btnSave_Click(object sender, EventArgs e)
     {
 
-      Feature.ControledBy(FLAG_EDYCJA_OBRAZKOW)
+      Feature.ControledBy(FLAG_OBRAZKI)
       .Replace(() =>
       {
         string message = "This functionality is not ready.";
