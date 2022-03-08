@@ -18,15 +18,15 @@ TODO:
 - zrobić switch PL/ENG ✅
 - zrobić dict PL:ENG ✅
 - mouse icon kiedy najedziemy na menu ✅
-- peace of paper na stronie About
-- ulepszyć scroll na feature chart page
-- sprawdzić czy w response mozna wysłać page
+- peace of paper na stronie About ❌
+- ulepszyć scroll na feature chart page ❌
 - z ujednolicic nazewnictwo zmiennych - bd - models ✅
 - zrobic pobieranie danych - blob ✅
 - zrobic wyswietlanie errorów ✅
 - zrobić ustawianie listy feature od daty ✅
 - dodac przycisk copy do widoku feature ✅
-- zmienic czciankę na "large" w tabeli
-- dymek na ikonce kopiowania - w tabeli
-- zmienic kolejność - link do tworzenia funkcjonalności pod tabela
-- dodac funkcję autoswitch gdy otrzymamy error + powiadomienie email.
+- zmienic czciankę na "large" w tabeli ❌
+- dymek na ikonce kopiowania - w tabeli ❌
+- zmienic kolejność - link do tworzenia funkcjonalności pod tabela ✅
+- dodac funkcję autoswitch gdy otrzymamy error + powiadomienie email. ✅
+-

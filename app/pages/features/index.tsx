@@ -26,7 +26,6 @@ const FeatureList = (props) => {
   const sortedFeatures = sortFeaturesByDateFromLatestToOldest(featuresBase)
   const [features, setFeatures] = useState(sortedFeatures)
 
-
   const language = props.lang
   const translation = language.get(AppViews.features)
 
@@ -84,20 +83,17 @@ const FeatureList = (props) => {
   }
 
   const onSearchChange = (e) => {
-    // console.log(123)
     if (allFeatures.length == 0 && allFeatures.length != features.length) {
       setAllFeatures(features)
     }
 
     if (e.target.value == "") {
       setFeatures(allFeatures)
-
-      if (search) setSearch(false)
     } else {
-      if (!search) setSearch(true)
-
-      setFeatures((current) =>
-        allFeatures.filter((f) => f.name.toLowerCase().startsWith(e.target.value.toLowerCase()))
+      setFeatures(() =>
+        allFeatures.filter((f) =>
+         f.name.toLowerCase().startsWith(e.target.value.toLowerCase())
+         )
       )
     }
   }
@@ -140,7 +136,7 @@ const FeaturesPage: BlitzPage = (props) => {
           <Center>
             <Text id="CreateFeatureLink">
               <Link href={"/features/new"}>
-                Jeśli nie ma tutaj Twojej funkcjonalności? Stworz ją.
+                Jeśli nie ma tutaj Twojej funkcjonalności - stworz ją.
               </Link>
             </Text>
           </Center>
