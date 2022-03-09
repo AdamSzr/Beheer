@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace BasicCalculator
 {
+    using SafeCoding;
     public partial class Form1 : Form
     {
         string input = string.Empty;        //String storing user input
@@ -17,6 +18,8 @@ namespace BasicCalculator
         String operand2 = string.Empty;     //String storing second operand
         char operation;                     //Char to store operator
         double result = 0.0;                //Get result
+        private IFeature FLAG_NAWIGACJA_GPS = Feature.ControledBy("77630adc-cec9-4a8d-9c86-f4c954f7d2e3");
+
 
 
         public Form1()
@@ -49,7 +52,7 @@ namespace BasicCalculator
         private void button4_Click(object sender, EventArgs e)
         {
             this.textBox1.Text = "";
-            input += "4"; 
+            input += "4";
             this.textBox1.Text += input;
         }
 
@@ -160,18 +163,12 @@ namespace BasicCalculator
             }
             else if (operation == '/')
             {
-
-				result = num1 / num2;
-                textBox1.Text = result.ToString();
-
-                // if (num2 != 0)
-                // {
-                    
-                // }
-                // else
-                // {
-                //     textBox1.Text = "ERROR DIV BY ZERO";
-                // }
+                FLAG_NAWIGACJA_GPS.Replace(()=>{
+                    textBox1.Text = "Dzielenie przez 0 nie jest jeszcze obsługiwane";
+                }).With(()=>{
+                    result = num1 / num2;
+                    textBox1.Text = result.ToString();
+                });
             }
         }
 
@@ -188,20 +185,7 @@ namespace BasicCalculator
             this.operand2 = string.Empty;
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
 
-        }
-
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
     }
 }
