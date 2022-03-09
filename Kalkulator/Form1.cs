@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BasicCalculator
 {
-    using SafeCoding;
-    public partial class Form1 : Form
+  using SafeCoding;
+  public partial class Form1 : Form
     {
         string input = string.Empty;        //String storing user input
         String operand1 = string.Empty;     //String storing first operand
         String operand2 = string.Empty;     //String storing second operand
         char operation;                     //Char to store operator
         double result = 0.0;                //Get result
-        private IFeature FLAG_NAWIGACJA_GPS = Feature.ControledBy("77630adc-cec9-4a8d-9c86-f4c954f7d2e3");
-
-
+        private IFeature FLAG_DZIELENIE_PRZEZ_ZERO = Feature.ControledBy("325e739a-4039-4f04-bb56-519819083a6d");
 
         public Form1()
         {
@@ -163,7 +154,7 @@ namespace BasicCalculator
             }
             else if (operation == '/')
             {
-                FLAG_NAWIGACJA_GPS.Replace(()=>{
+                FLAG_DZIELENIE_PRZEZ_ZERO.Replace(()=>{
                     textBox1.Text = "Dzielenie przez 0 nie jest jeszcze obsługiwane";
                 }).With(()=>{
                     result = num1 / num2;

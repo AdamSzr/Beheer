@@ -44,7 +44,7 @@ const FeatureView = (props) => {
   const updateCb = props.updateCallback
   const switchInitState = feature.value
   const { hasCopied, onCopy } = useClipboard(
-    `private IFeature FLAG_${feature.name.toLocaleUpperCase()} = Feature.ControledBy("${feature.uuid}");`
+    `private IFeature FLAG_${feature.name.toLocaleUpperCase().replaceAll(" ",`_`)} = Feature.ControledBy("${feature.uuid}");`
   )
 
   function deleteFeature(e: any, feature: Feature) {
