@@ -1,3 +1,5 @@
+import { GMAIL } from "app/config"
+
 const AppSettings = {
   bgColor: "#21618C",
   color: "#FFFFFF",

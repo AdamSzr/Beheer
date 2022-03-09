@@ -6,7 +6,8 @@ namespace ProgramGraficzny
 {
   using SafeCoding;
   public partial class Form1 : Form
-  {    private Bitmap imgBase;
+  {
+    private Bitmap imgBase;
     private Bitmap imgCMY;
     private Bitmap imgGray;
     private string imgName;
@@ -156,13 +157,10 @@ namespace ProgramGraficzny
       {
         if (this.imgBase != null)
         {
-
           saveFileDialog1 = new SaveFileDialog() { Filter = " Image Files(*.BMP;*.JPG,*.PNG)|*.BMP;*.JPG;*.PNG", FileName = generateFileName() };
-
           if (saveFileDialog1.ShowDialog() == DialogResult.OK)
           {
             throw new System.IO.IOException("Wystąpił symulowany błąd");
-
             using (var x = saveFileDialog1.OpenFile())
             {
               this.imgField.Image.Save(x, System.Drawing.Imaging.ImageFormat.Jpeg);

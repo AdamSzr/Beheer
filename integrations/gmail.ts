@@ -1,12 +1,9 @@
+import { GMAIL } from "app/config"
 import { MailOptions } from "app/core/models/model"
 import nodemailer from "nodemailer"
-import Mail from "nodemailer/lib/mailer"
-import SMTPTransport from "nodemailer/lib/smtp-transport"
 
 class Gmail {
   private static transporter
-  public static email = "beheer.projekt@gmail.com"
-  private static password = "beheerprojekt5%"
   private static isSetup = false
 
   public static init() {
@@ -15,8 +12,8 @@ class Gmail {
     this.transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: this.email,
-        pass: this.password,
+        user: GMAIL.ADRES_EMAIL,
+        pass: GMAIL.PASSWORD,
       },
     })
     this.isSetup = true

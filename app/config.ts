@@ -8,3 +8,8 @@ export const DEFAULT_LANGUAGE = Lang.PL
 
 export const ENABLE_SAVING_CHART_DATA = false
 export const VALIDATE_FEATURE_NAME = false
+
+export const GMAIL = {
+  ADRES_EMAIL: "beheer.projekt@gmail.com",
+  PASSWORD: "beheerprojekt5%",
+}

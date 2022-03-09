@@ -1,9 +1,7 @@
+import { GMAIL } from "app/config"
 import { Randomfrom, RandomInt } from "app/utils/base"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import Gmail from "integrations/gmail"
-import Mail from "nodemailer/lib/mailer"
-// import { ExecutionResult } from "../mutations/createPostExecutionData"
 
 export class Feature {
   id: number
@@ -253,7 +251,7 @@ export class MailOptions {
   constructor(to: string, featureName: string) {
     this.featureName = featureName
     this.to = to
-    this.from = Gmail.email
+    this.from = GMAIL.ADRES_EMAIL
     this.subject = this.generateSubject()
     this.html = this.generateHTML()
   }
