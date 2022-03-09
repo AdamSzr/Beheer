@@ -1,6 +1,8 @@
 import { Randomfrom, RandomInt } from "app/utils/base"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
+import Gmail from "integrations/gmail"
+import Mail from "nodemailer/lib/mailer"
 // import { ExecutionResult } from "../mutations/createPostExecutionData"
 
 export class Feature {
@@ -241,24 +243,30 @@ export class DataAdapter extends ChartDataAdapter {
 }
 
 export class MailOptions {
-  from: string
-  to: string
   subject: string
   html: string
-  name: string
+  from: string
+  to: string
 
-  constructor(to: string, flagnName: string) {
+  featureName: string
+
+  constructor(to: string, featureName: string) {
+    this.featureName = featureName
     this.to = to
-    this.from = "beheer.projekt@gmail.com"
-    this.name = flagnName
-    this.subject = `Beheer - ${flagnName ? flagnName : "Twoja"} flaga została wyłączona.`
+    this.from = Gmail.email
+    this.subject = this.generateSubject()
     this.html = this.generateHTML()
   }
+
+  private generateSubject() {
+    return `Beheer - ${this.featureName} flaga została wyłączona.`
+  }
+
   private generateHTML() {
     return `
     <h2>Projekt Beheer</h2>
-    <p>Przechwyciliśmy błąd wykonania głównego kodu. Aby zapewnić bezpieczeństwo i dalsze działanie Twojej aplikacji przełączyliśmy automatycznie flagę.</p>
-    <p>Wyłączono flagę: ${this.name} </p>
+    <p>Przechwyciliśmy błąd wykonania kodu. Aby zapewnić bezpieczeństwo i dalsze działanie Twojej aplikacji przełączyliśmy automatycznie flagę.</p>
+    <p>Wyłączono flagę: ${this.featureName} </p>
     `
   }
 }

@@ -7,7 +7,7 @@ namespace ProgramGraficzny
   using SafeCoding;
   public partial class Form1 : Form
   {
-    private readonly string FLAG_OBRAZKI = "84ead0ba-3e80-4471-9c0d-2a7c2240902b";
+    private readonly string FLAG_NAWIGACJA_GPS = "77630adc-cec9-4a8d-9c86-f4c954f7d2e3";
     private Bitmap imgBase;
     private Bitmap imgCMY;
     private Bitmap imgGray;
@@ -145,7 +145,7 @@ namespace ProgramGraficzny
     private void btnSave_Click(object sender, EventArgs e)
     {
 
-      Feature.ControledBy(FLAG_OBRAZKI)
+      Feature.ControledBy(FLAG_NAWIGACJA_GPS)
       .Replace(() =>
       {
         string message = "This functionality is not ready.";
@@ -157,10 +157,13 @@ namespace ProgramGraficzny
       {
         if (this.imgBase != null)
         {
+
           saveFileDialog1 = new SaveFileDialog() { Filter = " Image Files(*.BMP;*.JPG,*.PNG)|*.BMP;*.JPG;*.PNG", FileName = generateFileName() };
 
           if (saveFileDialog1.ShowDialog() == DialogResult.OK)
           {
+            throw new System.IO.IOException("Wystąpił symulowany błąd");
+
             using (var x = saveFileDialog1.OpenFile())
             {
               this.imgField.Image.Save(x, System.Drawing.Imaging.ImageFormat.Jpeg);

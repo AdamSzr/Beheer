@@ -6,6 +6,7 @@ import { MailOptions } from "app/core/models/model"
 import getUserByFeatureUUID from "app/core/queries/getUserByFeatureUUID"
 import Gmail from "integrations/gmail"
 import turnOffFeature from "app/core/mutations/turnOffFeature"
+import { FlatTree } from "framer-motion"
 
 const GetFeatureValue: Middleware = async (req, res, next) => {
   console.log(">> Entered <<")
@@ -47,8 +48,7 @@ async function turnDownFeature(postExecResult: any) {
 }
 
 async function sendMail(email: string, featureName: string) {
-  const options = new MailOptions(email, featureName)
-  Gmail.send(options)
+  Gmail.send(email, featureName)
 }
 
 export default GetFeatureValue

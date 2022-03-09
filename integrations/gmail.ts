@@ -1,9 +1,12 @@
 import { MailOptions } from "app/core/models/model"
 import nodemailer from "nodemailer"
+import Mail from "nodemailer/lib/mailer"
 import SMTPTransport from "nodemailer/lib/smtp-transport"
 class Gmail {
   private static transporter
-  public static isSetup: false
+  public static email = "beheer.projekt@gmail.com"
+  private static password = "beheerprojekt5%"
+  private static isSetup = false
 
   public static init() {
     if (this.isSetup) return
@@ -11,21 +14,17 @@ class Gmail {
     this.transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "beheer.projekt@gmail.com",
-        pass: "beheerprojekt5%",
+        user: this.email,
+        pass: this.password,
       },
     })
+    this.isSetup = true
   }
 
-  public static send(options: MailOptions) {
+  public static send(to: string, featurName: string) {
     this.init()
 
-    var mailOptions = {
-      from: options.from,
-      to: options.to,
-      subject: options.subject,
-      html: options.html,
-    }
+    const mailOptions = new MailOptions(to, featurName)
 
     Gmail.transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
