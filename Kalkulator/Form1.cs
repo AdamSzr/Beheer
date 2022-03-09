@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BasicCalculator
+namespace ProstyKalkulator
 {
   using SafeCoding;
-  public partial class Form1 : Form
+  public partial class Kalkulator : Form
     {
         string input = string.Empty;        //String storing user input
         String operand1 = string.Empty;     //String storing first operand
@@ -13,7 +13,7 @@ namespace BasicCalculator
         double result = 0.0;                //Get result
         private IFeature FLAG_DZIELENIE_PRZEZ_ZERO = Feature.ControledBy("325e739a-4039-4f04-bb56-519819083a6d");
 
-        public Form1()
+        public Kalkulator()
         {
             InitializeComponent();
             this.Text = "Calculator";

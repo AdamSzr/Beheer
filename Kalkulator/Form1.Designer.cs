@@ -1,6 +1,6 @@
-﻿namespace BasicCalculator
+﻿namespace ProstyKalkulator
 {
-    partial class Form1
+    partial class Kalkulator
     {
         /// <summary>
         /// Required designer variable.

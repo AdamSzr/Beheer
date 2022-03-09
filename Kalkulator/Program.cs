@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace BasicCalculator
+namespace ProstyKalkulator
 {
   static class Program
     {
@@ -14,7 +14,7 @@ namespace BasicCalculator
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Kalkulator());
         }
     }
 }

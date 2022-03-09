@@ -37,7 +37,7 @@ namespace SafeCoding
       set
       {
         _execTimer.Stop();
-        time = _execTimer.ElapsedMilliseconds;
+        time = _execTimer.ElapsedTicks;
         _status = value;
       }
     }
