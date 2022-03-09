@@ -2,19 +2,21 @@ using System;
 
 namespace SafeCoding
 {
-  class Feature
-  {
-    public string uuid { get; private set; }
-    public bool value { get; private set; }
-    public string name {get; private set;}
 
+  interface IFeature{
+    public IFeature Replace(Action code);
+    public void With(Action code);
+  }
+
+  class Feature : IFeature
+  {
+    private string uuid { get;  set; }
+    private bool value { get;  set; }
+    private string name {get;  set;}
     private Action oldCode { get; set; }
     private Action newCode { get; set; }
-
-
-    private ControlFeatureServerConnector connector { get; set; }
-
-    public static Feature ControledBy(string uuid)
+    internal ControlFeatureServerConnector connector { get; set; }
+    public static IFeature ControledBy(string uuid)
     {
       return new Feature()
       {
@@ -22,20 +24,16 @@ namespace SafeCoding
         connector = new ControlFeatureServerConnector(uuid)
       };
     }
-
-
-    public Feature Replace(Action code)
+    public IFeature Replace(Action code)
     {
       this.oldCode = code;
       return this;
     }
-
     public void With(Action code)
     {
       newCode = code;
       Execute();
     }
-
     private void Execute()
     {
       ExecutionResult result = new();
@@ -43,6 +41,7 @@ namespace SafeCoding
       var response = connector.Download();
       result.value = response.value;
       result.name = response.name;
+
       if (result.value)
       {
         result.execution = RunCode(newCode);
@@ -53,11 +52,8 @@ namespace SafeCoding
         result.execution = RunCode(oldCode);
       }
 
-
       connector.Publish(result);
     }
-
-
     private Execution RunCode(Action code)
     {
       Execution exec = new();
@@ -73,6 +69,5 @@ namespace SafeCoding
       }
       return exec;
     }
-
   }
 }

@@ -6,13 +6,12 @@ namespace ProgramGraficzny
 {
   using SafeCoding;
   public partial class Form1 : Form
-  {
-    private readonly string FLAG_NAWIGACJA_GPS = "77630adc-cec9-4a8d-9c86-f4c954f7d2e3";
-    private Bitmap imgBase;
+  {    private Bitmap imgBase;
     private Bitmap imgCMY;
     private Bitmap imgGray;
     private string imgName;
     private imgType imgType;
+    private IFeature FLAG_NAWIGACJA_GPS = Feature.ControledBy("77630adc-cec9-4a8d-9c86-f4c954f7d2e3");
 
     public Form1()
     {
@@ -145,7 +144,7 @@ namespace ProgramGraficzny
     private void btnSave_Click(object sender, EventArgs e)
     {
 
-      Feature.ControledBy(FLAG_NAWIGACJA_GPS)
+      FLAG_NAWIGACJA_GPS
       .Replace(() =>
       {
         string message = "This functionality is not ready.";
