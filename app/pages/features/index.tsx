@@ -134,7 +134,7 @@ const FeaturesPage: BlitzPage = (props) => {
           <Center>
             <Text id="CreateFeatureLink">
               <Link href={"/features/new"}>
-                Jeśli nie ma tutaj Twojej funkcjonalności - stworz ją.
+                Jeśli nie ma tutaj Twojej funkcjonalności - stwórz ją.
               </Link>
             </Text>
           </Center>
