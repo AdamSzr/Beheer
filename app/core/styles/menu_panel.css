@@ -33,3 +33,7 @@
 #LogoutButton:hover {
   background-color: rgb(78 78 78);
 }
+
+#Language_switch {
+  margin-right: 2vw;
+}

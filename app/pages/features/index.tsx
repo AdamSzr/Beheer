@@ -26,8 +26,6 @@ const FeatureList = (props) => {
   const sortedFeatures = sortFeaturesByDateFromLatestToOldest(featuresBase)
   const [features, setFeatures] = useState(sortedFeatures)
 
-  const language = props.lang
-  const translation = language.get(AppViews.features)
 
   const [deleteFeatureMutation] = useMutation(deleteFeature) as any
   const [updateFeatureMutation] = useMutation(updateFeature) as any
@@ -106,7 +104,7 @@ const FeatureList = (props) => {
     <>
       <Input
         onChange={onSearchChange}
-        placeholder={translation.inputSearch.placeholder}
+        placeholder={"Wyszukaj"}
         id="SearchInput"
       />
       <Table variant="simple" size="sm" id="featureTable">

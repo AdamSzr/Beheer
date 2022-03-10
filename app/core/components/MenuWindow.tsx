@@ -38,7 +38,7 @@ import FeaturesPage from "app/pages/features/index"
 import { useState } from "react"
 import SettingsPage from "../../pages/settings"
 import logout from "app/auth/mutations/logout"
-import { AppViews } from "app/lang/available"
+import { AppViews, Lang } from "app/lang/available"
 import { MULTI_LANGUAGE } from "app/config"
 
 const MenuWindow = (props) => {
@@ -46,7 +46,7 @@ const MenuWindow = (props) => {
   // console.log({props})
   const updateLang = props.lang.update
   const translation = props.lang.get(AppViews.menu)
-  // console.log(translation)
+  console.log(props.lang.currentLang)
 
   const insideComponent = props.children
   // console.log(insideComponent)
@@ -64,8 +64,8 @@ const MenuWindow = (props) => {
           <Text onClick={() => Router.push("/settings")}>{translation.settings.name}</Text>
           <Text onClick={() => Router.push("/about")}>{translation.about.name}</Text>
           <Spacer />
+          {MULTI_LANGUAGE ? <span id="Language_switch"> PL<Switch onChange={updateLang} isChecked={props.lang.currentLang==Lang.PL?false:true} />EN</span>: ""}
           <Text id="LogoutButton" onClick={LogoutUser}>{translation.logout.name}</Text>
-          {MULTI_LANGUAGE ? <Switch onChange={updateLang} /> : ""}
         </HStack>
       </Box>
       <Box id="Content">{insideComponent}</Box>

@@ -39,20 +39,18 @@ import MenuWindow from "app/core/components/MenuWindow"
 import { AppViews } from "app/lang/available"
 
 export const Settings = (props) => {
-  const translation = props.lang.get(AppViews.settings)
-  console.log({ translation })
   const currentUser = useCurrentUser()
   return (
     <Box>
       <Center>
         <BorderComponent>
           <Box key="1">
-            <Text fontSize="xl"> {translation.topic}</Text>
+            <Text fontSize="xl"> {"Twoje dane:"}</Text>
             <Box borderBottom={"1px solid #aaa"} marginBottom={"2vh"}></Box>
             <FormControl id="settingsForm">
-              <FormLabel>{translation.inputEmail.description}</FormLabel>
+              <FormLabel>{"Wpisz email"}</FormLabel>
               <Input placeholder={`${currentUser?.email}`} />
-              <FormLabel>{translation.inputPassw.description}</FormLabel>
+              <FormLabel>{"Wpisz Hasło"}</FormLabel>
               <Input type={"password"} placeholder="*********" />
               <Button
                 mt={4}
@@ -62,7 +60,7 @@ export const Settings = (props) => {
                   console.error("handle settings change")
                 }}
               >
-                {translation.submit.text}
+                {"Zapisz"}
               </Button>
             </FormControl>
           </Box>
