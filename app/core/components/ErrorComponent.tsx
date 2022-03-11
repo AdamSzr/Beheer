@@ -34,11 +34,11 @@ const ErrorComponent = (props) => {
     <div className="error__message message">
       <h1 className="message__title">404</h1>
       <p className="message__text">
-          Page Not Found
+          Strony nie znaleziono
       </p>
     </div>
     <div className="error__nav e-nav">
-      <a href="/" target="" className="e-nav__link">Home Page</a>
+      <a href="/" target="" className="e-nav__link">Przejdz na Stronę Główną</a>
     </div>
   </div>
   {/* <!-- END Content --> */}

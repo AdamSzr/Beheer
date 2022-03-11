@@ -1,7 +1,7 @@
 import { App } from "blitz"
 
 export class Language {
-  lang: Lang
+  lang: Languages
   name: string
   code2: string
   views
@@ -15,7 +15,7 @@ export class Language {
   }
 }
 
-export enum Lang {
+export enum Languages {
   PL = "PL",
   EN = "EN",
 }
@@ -39,8 +39,13 @@ function getListFromEnum() {
 
 const pl = new Language()
 pl.code2 = "pl"
-pl.lang = Lang.PL
+pl.lang = Languages.PL
 pl.name = "polish"
+
+const en = new Language()
+en.code2 = "en"
+en.lang = Languages.EN
+en.name = "english"
 
 pl.views[AppViews.menu] = {
   features: { name: "Funkcjonalności" },
@@ -49,11 +54,6 @@ pl.views[AppViews.menu] = {
   logout: { name: "Wyloguj" },
   home: { name: "Strona Główna" },
 }
-
-const en = new Language()
-en.code2 = "en"
-en.lang = Lang.EN
-en.name = "english"
 
 en.views[AppViews.menu] = {
   features: { name: "Features" },

@@ -23,11 +23,11 @@ import {
 } from "chart.js"
 import { Chart } from "react-chartjs-2"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
-import { DataAdapter, PostExecutionData } from "app/core/models/model"
+import { TableDataAdapter, PostExecutionData } from "app/core/models/model"
 import { number } from "zod"
 
 type FeatureStatsProps = {
-  adapter: DataAdapter
+  adapter: TableDataAdapter
 }
 
 const FeatureStats = (props: FeatureStatsProps) => {
@@ -82,7 +82,7 @@ const FeatureStats = (props: FeatureStatsProps) => {
             })}
             {CreateRow({
               title: "Najmniej wykonań kodu",
-              data: [adapter.getMostLazyeDay()],
+              data: [adapter.getMostLazyDay()],
             })}
             {CreateRow({
               title: "Średni czas wykonywania kodu",

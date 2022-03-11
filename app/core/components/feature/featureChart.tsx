@@ -8,7 +8,7 @@ import { CreateArray, GenerateRandomString, RandomInt } from "app/utils/base"
 import { CHART_COLORS, color, COLORS, namedColor } from "app/utils/chart/utils"
 import { DateAddDays } from "app/utils/time"
 import faker from "faker"
-import { ChartDataAdapter, DataAdapter, ExecutionData, PostExecutionData } from "app/core/models/model"
+import { ChartDataAdapter, TableDataAdapter, ExecutionData, PostExecutionData } from "app/core/models/model"
 import { Box } from "@chakra-ui/layout"
 import { Button, ButtonGroup } from "@chakra-ui/react"
 import {
@@ -26,23 +26,23 @@ import { Chart } from "react-chartjs-2"
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 type FeatureChartProps = {
-  adapter: DataAdapter
+  adapter: TableDataAdapter
   onSelected?: () => void
 }
 
+type DataSet = {
+  label: string
+  data: number[]
+}
+
 const FeatureChart = (props: FeatureChartProps) => {
-
-  const adapter = props.adapter
-  const toPresent = adapter.prepareChartData(adapter.last30Days)
-
-  const [title, setTitle] = useState("Wykres")
-
+  const chart = props.adapter.prepareChartData(props.adapter.last30Days)
   const data = {
-    labels: toPresent.data.map((i) => i.label), // dataToPresent
+    labels: chart.data.map((i) => i.label),
     datasets: [
       {
         label: "ilość uruchomień",
-        data: toPresent.data.map((i) => i.countOfExecutions), // dataToPresent
+        data: chart.data.map((i) => i.countOfExecutions), // dataToPresent
         fill: false,
         borderColor: "rgb(255, 22, 132)",
         backgroundColor: "rgb(255,255,255)",
@@ -50,7 +50,7 @@ const FeatureChart = (props: FeatureChartProps) => {
       },
       {
         label: "ilość pomyślnych uruchomień kodu",
-        data: toPresent.data.map((i) => i.countOfSuccess), // dataToPresent
+        data: chart.data.map((i) => i.countOfSuccess), // dataToPresent
         fill: false,
         borderColor: "rgb(77, 22, 132)",
         hidden:true,
@@ -58,7 +58,7 @@ const FeatureChart = (props: FeatureChartProps) => {
       },
       {
         label: "ilość wyjątków",
-        data: toPresent.data.map((i) => i.countOfErrors), // dataToPresent
+        data: chart.data.map((i) => i.countOfErrors), // dataToPresent
         fill: false,
         hidden:true,
         borderColor: "rgb(170, 120, 12)",
@@ -66,7 +66,7 @@ const FeatureChart = (props: FeatureChartProps) => {
       },
       {
         label: "ilość uruchomień nowego kodu",
-        data: toPresent.data.map((i) => i.countOfTrueValue), // dataToPresent
+        data: chart.data.map((i) => i.countOfTrueValue), // dataToPresent
         fill: false,
         hidden:true,
         borderColor: "rgb(255, 22, 23)",
@@ -105,7 +105,7 @@ const FeatureChart = (props: FeatureChartProps) => {
       },
       title: {
         display: true,
-        text: title,
+        text: "Wykres",
       },
       tooltip: {
         enabled: true,
@@ -130,13 +130,8 @@ const FeatureChart = (props: FeatureChartProps) => {
         data={data}
         options={options as any}
         id="feature_chart"
-        onClick={() => console.log(123)}
         style={{ position: "relative", height: "40vh", width: "80vw" }}
       />
-
-      {/* <Box>
-          <FeatureStats data={data} />
-        </Box> */}
     </Box>
   )
 }

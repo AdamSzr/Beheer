@@ -1,4 +1,4 @@
-import { Lang } from "app/lang/available"
+import { Languages } from "app/lang/available"
 import { DefaultCtx, SessionContext, SimpleRolesIsAuthorized } from "blitz"
 import { User } from "db"
 

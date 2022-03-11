@@ -13,7 +13,7 @@ import "app/core/styles/sheet.css"
 import { Suspense } from "react"
 
 import { ChakraProvider, Box } from "@chakra-ui/react"
-import { AppDefaultLanguages, AppViews, Lang } from "app/lang/available"
+import { AppDefaultLanguages, AppViews, Languages } from "app/lang/available"
 import { useState } from "react"
 import lang from "app/auth/mutations/lang"
 import { DEFAULT_LANGUAGE } from "app/config"
@@ -30,12 +30,12 @@ export default function App({ Component, pageProps }: AppProps) {
 
   function updateLanguage() {
     setLang((current) => {
-      if (current.lang == Lang.PL) {
-        setCurrentLang(Lang.EN)
-        return AppDefaultLanguages[Lang.EN]
+      if (current.lang == Languages.PL) {
+        setCurrentLang(Languages.EN)
+        return AppDefaultLanguages[Languages.EN]
       } else {
-        setCurrentLang(Lang.PL)
-        return AppDefaultLanguages[Lang.PL]
+        setCurrentLang(Languages.PL)
+        return AppDefaultLanguages[Languages.PL]
       }
     })
   }
@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     if (error instanceof AuthenticationError) {
-      return <LoginPage lang={langObj} /> //TODO:
+      return <LoginPage lang={langObj} />
     } else if (error instanceof AuthorizationError) {
       return (
         // <ErrorViewComponent error={error} statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />

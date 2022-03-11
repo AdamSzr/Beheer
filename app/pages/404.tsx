@@ -6,7 +6,7 @@ import ErrorComponent from "app/core/components/ErrorComponent"
 // ------------------------------------------------------
 export default function Page404() {
   const statusCode = 404
-  const title = "This page could not be found"
+  const title = "Nie znaleziono strony."
   return (
     <>
       <Head>

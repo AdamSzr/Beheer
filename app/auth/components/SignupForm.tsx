@@ -8,7 +8,7 @@ import { Text, Center, Input, IconButton, FormControl, Box, Heading, Link } from
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
-import { SIGNUP_PASSW_VALIDATION, USE_SIGNUP_VALIDATOR } from "app/config"
+import {  USE_SIGNUP_VALIDATOR } from "app/config"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type SignupFormProps = {

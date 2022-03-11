@@ -63,7 +63,11 @@ export class ExecutionData {
   }
 }
 
-export class ChartDataAdapter {
+export interface IChartDataAdapter {
+  prepareChartData: (fromData: PostExecutionData[]) => ChartData
+}
+
+export class ChartDataAdapter implements IChartDataAdapter {
   public data: PostExecutionData[]
   public last30Days: PostExecutionData[]
   public last60Days: PostExecutionData[]
@@ -75,11 +79,11 @@ export class ChartDataAdapter {
     this.last60Days = this.getFromLastNDays(60)
   }
 
-  sortByDate(items: PostExecutionData[]) {
+  protected sortByDate(items: PostExecutionData[]) {
     return items.sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1))
   }
 
-  getFromLastNDays(Ndays: number) {
+  protected getFromLastNDays(Ndays: number) {
     const now = new Date()
     const daySince = DateAddDays(now, -1 * Ndays).getTime()
 
@@ -110,6 +114,10 @@ export class ChartDataAdapter {
   }
 }
 
+class ChartData {
+  data = [] as ChartEntity[]
+}
+
 class ChartEntity {
   label: string
   countOfExecutions: number
@@ -128,15 +136,18 @@ class ChartEntity {
   }
 }
 
-class ChartData {
-  data: ChartEntity[]
-
-  constructor() {
-    this.data = []
-  }
+export interface IDataAdapter {
+  getTotalCountOfExecution(): number
+  newCodeExecCount(): number
+  oldCodeExecCount(): number
+  countOfSuccesfullyRunned(): number
+  getMostIntenseDay(): string
+  getMostLazyDay(): string
+  getAvgTime(): string
+  countOfErrorRunned(): number
 }
 
-export class DataAdapter extends ChartDataAdapter {
+export class TableDataAdapter extends ChartDataAdapter implements IDataAdapter {
   private newCodeCountExecution
   private oldCodeCountExecution
   private succesfullyRunnedCode
@@ -203,7 +214,7 @@ export class DataAdapter extends ChartDataAdapter {
     return this.mostIntenseDay.label + " (" + this.mostIntenseDay.countOfExecutions + ")"
   }
 
-  public getMostLazyeDay() {
+  public getMostLazyDay() {
     if (!this.mostLazyDay) {
       const items = this.prepareChartData(this.data)
       this.mostLazyDay = items.data[0]
@@ -264,7 +275,7 @@ export class MailOptions {
     return `
     <h2>Projekt Beheer</h2>
     <p>Przechwyciliśmy błąd wykonania kodu. Aby zapewnić bezpieczeństwo i dalsze działanie Twojej aplikacji przełączyliśmy automatycznie flagę.</p>
-    <p>Wyłączono flagę: ${this.featureName} </p>
+    <p>Wyłączono flagę: <b style="font-size:large"> ${this.featureName} </b> </p>
     `
   }
 }

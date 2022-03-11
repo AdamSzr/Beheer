@@ -38,15 +38,19 @@ import FeaturesPage from "app/pages/features/index"
 import { useState } from "react"
 import SettingsPage from "../../pages/settings"
 import logout from "app/auth/mutations/logout"
-import { AppViews, Lang } from "app/lang/available"
+import { AppViews, Languages } from "app/lang/available"
 import { MULTI_LANGUAGE } from "app/config"
+import {Lang} from "app/pages/types"
 
-const MenuWindow = (props) => {
-  const [logoutMutation] = useMutation(logout)
-  // console.log({props})
-  const updateLang = props.lang.update
+type MenuProps = {
+  children: any
+  lang: Lang
+}
+const MenuWindow = (props: MenuProps) => {
   const translation = props.lang.get(AppViews.menu)
-  console.log(props.lang.currentLang)
+  const updateLang = props.lang.update
+
+  const [logoutMutation] = useMutation(logout)
 
   const insideComponent = props.children
   // console.log(insideComponent)
@@ -65,8 +69,21 @@ const MenuWindow = (props) => {
           <Text onClick={() => Router.push("/settings")}>{translation.settings.name}</Text>
           <Text onClick={() => Router.push("/about")}>{translation.about.name}</Text>
           <Spacer />
-          {MULTI_LANGUAGE ? <span id="Language_switch"> PL<Switch onChange={updateLang} isChecked={props.lang.currentLang==Lang.PL?false:true} />EN</span>: ""}
-          <Text id="LogoutButton" onClick={LogoutUser}>{translation.logout.name}</Text>
+          {MULTI_LANGUAGE ? (
+            <span id="Language_switch">
+              PL
+              <Switch
+                onChange={updateLang}
+                isChecked={props.lang.currentLang == Languages.PL ? false : true}
+              />
+              EN
+            </span>
+          ) : (
+            ""
+          )}
+          <Text id="LogoutButton" onClick={LogoutUser}>
+            {translation.logout.name}
+          </Text>
         </HStack>
       </Box>
       <Box id="Content">{insideComponent}</Box>

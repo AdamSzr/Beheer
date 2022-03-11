@@ -5,7 +5,7 @@ import FeatureStats from "./featureStats"
 import getAllExecutuionData from "app/core/queries/postExecutuionData/getAllExecutionData"
 import { useQuery } from "blitz"
 import getFeatureByIdOrName from "app/core/queries/feature/getFeatureByIdOrName"
-import { DataAdapter, Feature } from "app/core/models/model"
+import { TableDataAdapter, Feature } from "app/core/models/model"
 
 type FeatureDetailsWindowProps = {
   feature: Feature
@@ -14,7 +14,7 @@ type FeatureDetailsWindowProps = {
 const FeatureDetailsWindow = (props: FeatureDetailsWindowProps) => {
   const items = useQuery(getAllExecutuionData, { uuid: props.feature.uuid })[0] as any
 
-  const adapter = new DataAdapter(items)
+  const adapter = new TableDataAdapter(items)
   // console.log(items)
 
   class Components {
