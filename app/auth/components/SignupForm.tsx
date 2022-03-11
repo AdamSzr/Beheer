@@ -3,21 +3,18 @@ import { useMutation, Router, Routes } from "blitz"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
 import React, { useState } from "react"
-import {z} from "zod"
+import { z } from "zod"
 import { Text, Center, Input, IconButton, FormControl, Box, Heading, Link } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 import ErrorDisplayer from "app/core/components/ErrorHandlingComponent"
-import {  SIGNUP_PASSW_VALIDATION } from "app/config"
+import { SIGNUP_PASSW_VALIDATION, USE_SIGNUP_VALIDATOR } from "app/config"
 import ErrorViewComponent from "app/core/components/ErrorViewComponent"
 
 type SignupFormProps = {
   onSuccess?: () => void
   language: any
 }
-
-
-
 
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
@@ -28,24 +25,25 @@ export const SignupForm = (props: SignupFormProps) => {
   const [errors, setErrors] = useState("" as any)
   const language = props.language
 
-
-  const SignUpValidation = (email: string, password: string) => {
-    const passwValidation = z.string()
-    .min(8, "Hasło nie może być krótsze niz 8 znaków")
-    .max(30, "Hasło nie może być dłuższe niz 30 znaków")
-    .regex(/.*[A-Z]/, "Hasło musi zawierać conajmniej 1 dużą literę")
-    .regex(/.*[0-9]/, "Hasło musi zawierać conajmniej 1 cyfrę")
-    .regex(/.*[a-z]/, "Hasło musi zawierać conajmniej 1 małą literę")
-    .regex(/.*[^A-Za-z0-9]/, "Hasło musi zawierać conajmniej 1 znak specjalny")
+  const validate = (email: string, password: string) => {
+    const passwValidation = z
+      .string()
+      .min(8, "Hasło nie może być krótsze niz 8 znaków")
+      .max(30, "Hasło nie może być dłuższe niz 30 znaków")
+      .regex(/.*[A-Z]/, "Hasło musi zawierać conajmniej 1 dużą literę")
+      .regex(/.*[0-9]/, "Hasło musi zawierać conajmniej 1 cyfrę")
+      .regex(/.*[a-z]/, "Hasło musi zawierać conajmniej 1 małą literę")
+      .regex(/.*[^A-Za-z0-9]/, "Hasło musi zawierać conajmniej 1 znak specjalny")
     const emailValidation = z.string().email("Wprowadzony email wygląda na niepoprawny")
 
-    try{
-     passwValidation.parse(password)
-     emailValidation.parse(email)
-    }
-    catch(e){
-     setErrors(() => e.errors.map(e => e.message).map(str => <p key={Math.random()}> {str} </p>))
-     return false
+    try {
+      passwValidation.parse(password)
+      emailValidation.parse(email)
+    } catch (e) {
+      setErrors(() =>
+        e.errors.map((e) => e.message).map((str) => <p key={Math.random()}> {str} </p>)
+      )
+      return false
     }
     return true
   }
@@ -54,10 +52,12 @@ export const SignupForm = (props: SignupFormProps) => {
     e.preventDefault()
     // console.log("signup-submit-Click")
     console.log({ email, password })
-    if (!SignUpValidation(email,password)) {
-      setErrorView(true)
-      return
-    }
+
+    if (USE_SIGNUP_VALIDATOR)
+      if (validate(email, password) == false) {
+        setErrorView(true)
+        return
+      }
 
     await signupMutation({ email, password })
     Router.push(Routes.FullScreen())
@@ -71,9 +71,7 @@ export const SignupForm = (props: SignupFormProps) => {
       {errorView ? (
         <ErrorViewComponent
           title="Błąd rejestracji"
-          error={
-            errors
-          }
+          error={errors}
           statusCode={501}
           closeCb={() => {
             setErrorView(false)

@@ -25,7 +25,6 @@ import {
 } from "@chakra-ui/react"
 import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import { PostExecutionData, Feature } from "app/core/models/model"
-import { ENABLE_SAVING_CHART_DATA } from "app/config"
 import FeatureDetailsWindow from "app/core/components/feature/featureDetailsWindow"
 
 // function getFormatedDate(dto: PostExecutionData): string {
