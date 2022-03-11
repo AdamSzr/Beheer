@@ -1,0 +1,29 @@
+#home_text {
+  font-size: medium;
+}
+#home_text > #quote {
+  text-align: end;
+  font-size: x-large;
+}
+#home_text > p:first-child {
+  text-align: center;
+  font-size: xx-large;
+  margin-bottom: 5vh;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#home_text li > span {
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#home_text li {
+  text-indent: 0px;
+}
+
+#home_text * p {
+  margin-bottom: 8px;
+  text-indent: 2vw;
+}

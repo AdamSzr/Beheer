@@ -60,6 +60,7 @@ const MenuWindow = (props) => {
     <Box id="BackgroundBoard">
       <Box id="Menu">
         <HStack id="MenuPanelStack">
+          <Text onClick={() => Router.push("/")}>{translation.home.name}</Text>
           <Text onClick={() => Router.push("/features")}>{translation.features.name}</Text>
           <Text onClick={() => Router.push("/settings")}>{translation.settings.name}</Text>
           <Text onClick={() => Router.push("/about")}>{translation.about.name}</Text>

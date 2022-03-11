@@ -47,6 +47,7 @@ pl.views[AppViews.menu] = {
   settings: { name: "Ustawienia" },
   about: { name: "O Stronie" },
   logout: { name: "Wyloguj" },
+  home: { name: "Strona Główna" },
 }
 
 const en = new Language()
@@ -59,6 +60,7 @@ en.views[AppViews.menu] = {
   settings: { name: "Settings" },
   about: { name: "About" },
   logout: { name: "Logout" },
+  home: { name: "Home" },
 }
 
 export const AppDefaultLanguages = { PL: pl, EN: en }

@@ -66,7 +66,7 @@ export const SignupForm = (props: SignupFormProps) => {
   return (
     <Box>
       <Heading as="h1" size="4xl" marginBottom={10} textColor="white" textAlign="center">
-        {language.text}
+        {"Rejestracja"}
       </Heading>
       {errorView ? (
         <ErrorViewComponent
@@ -91,7 +91,7 @@ export const SignupForm = (props: SignupFormProps) => {
               setEmail(e.target.value)
             }}
             display="block"
-            placeholder={language.inputEmail.placeholder}
+            placeholder={"wpisz email"}
             marginBottom={10}
             textAlign="center"
           />
@@ -104,7 +104,7 @@ export const SignupForm = (props: SignupFormProps) => {
               setErrors("")
             }}
             display="block"
-            placeholder={language.inputPassw.placeholder}
+            placeholder={"wpisz hasło"}
             marginBottom={10}
             textAlign="center"
           />

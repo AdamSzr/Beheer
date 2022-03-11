@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using SafeCoding;
 
 namespace ProstyKalkulator
 {
-  using SafeCoding;
   public partial class Kalkulator : Form
     {
         string input = string.Empty;        //String storing user input
@@ -11,8 +11,7 @@ namespace ProstyKalkulator
         String operand2 = string.Empty;     //String storing second operand
         char operation;                     //Char to store operator
         double result = 0.0;                //Get result
-        private IFeature FLAG_DZIELENIE_PRZEZ_ZERO = Feature.ControledBy("325e739a-4039-4f04-bb56-519819083a6d");
-
+        private IFeature FLAG_KALKULATOR_OPERACJA_DZIELENIA = Feature.ControledBy("66a9375b-4b1c-4ef9-87f1-b812c57d1bb9");
         public Kalkulator()
         {
             InitializeComponent();
@@ -154,12 +153,16 @@ namespace ProstyKalkulator
             }
             else if (operation == '/')
             {
-                FLAG_DZIELENIE_PRZEZ_ZERO.Replace(()=>{
-                    textBox1.Text = "Dzielenie przez 0 nie jest jeszcze obsługiwane";
-                }).With(()=>{
+                FLAG_KALKULATOR_OPERACJA_DZIELENIA
+                .Replace(() => {
+                    textBox1.Text="Dzielenie nie jest zaimplementowane";
+                })
+                .With(() => {
                     result = num1 / num2;
                     textBox1.Text = result.ToString();
                 });
+
+
             }
         }
 

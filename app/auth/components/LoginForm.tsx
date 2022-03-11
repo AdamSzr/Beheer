@@ -44,7 +44,7 @@ export const LoginForm = (props: LoginFormProps) => {
   return (
     <Box>
       <Heading as="h1" size="4xl" marginBottom={10} textColor="white" textAlign="center">
-        {language.text}
+        {"Logowanie"}
       </Heading>
       {errorView ? (
         <ErrorViewComponent
