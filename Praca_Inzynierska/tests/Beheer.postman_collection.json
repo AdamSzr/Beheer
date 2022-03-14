@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "a5fb8611-6b98-4eaa-98ea-51403ea2798d",
+		"name": "Beheer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "poprawne przypadki",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response is eq to item \", function () {\r",
+							"    const expected = { name:'abcd', value:true }\r",
+							"    const response = pm.response.json()\r",
+							"    pm.expect(response).to.eql(expected)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/feature/faa4a222-5470-4de4-9e7a-09460fc304f5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"feature",
+						"faa4a222-5470-4de4-9e7a-09460fc304f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wadliwe przypadki",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/feature/faa4a222-5470-4de4-9e7a-09460fc304f",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"feature",
+						"faa4a222-5470-4de4-9e7a-09460fc304f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stworz poprawne przypadki",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"JSON not null\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"faa4a222-5470-4de4-9e7a-09460fc304f5\",\r\n    \"value\": true,\r\n    \"name\": \"abcd\",\r\n    \"execution\": { \"status\": \"SUCCESS\", \"errors\": null, \"time\": 4201, \"isMain\": true }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/feature/faa4a222-5470-4de4-9e7a-09460fc304f5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"feature",
+						"faa4a222-5470-4de4-9e7a-09460fc304f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stworz zle przypadki",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"JSON invalid body shape\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"faa4a222-5470-4de4-9e7a-09460fc304f5\",\r\n    \"value\": true,\r\n    \"execution\": { \"status\": \"SUCCESS\", \"errors\": null, \"time\": 4201, \"isMain\": true }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/feature/faa4a222-5470-4de4-9e7a-09460fc304f5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"feature",
+						"faa4a222-5470-4de4-9e7a-09460fc304f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "zły uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"incorrect UUID\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    console.log(pm.response)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"faa4a222-5470-4de4-9e7a-09460fc304f5\",\r\n    \"value\": true,\r\n    \"name\": \"abcd\",\r\n    \"execution\": { \"status\": \"SUCCESS\", \"errors\": null, \"time\": 4201, \"isMain\": true }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/feature/faa4a222-5470-4de4a-09460fc303",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"feature",
+						"faa4a222-5470-4de4a-09460fc303"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
