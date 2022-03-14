@@ -14,12 +14,20 @@ const GetFeatureValue: Middleware = async (req, res, next) => {
   if (req.method === "GET") {
     const featureUuid = req.query.uuid as string
     var x = (await db.feature.findFirst({ where: { uuid: featureUuid } })) as Feature
+    if (!x) return res.status(404).send("resource not found")
+
     const featureInfo = new FeatureInfo(x.name, x.value)
     console.log({ featureInfo })
-    return res.status(202).json(featureInfo)
+    return res.status(200).json(featureInfo)
   }
 
   if (req.method === "POST") {
+    console.log({ body: req.body })
+    if (!PostExecutionData.validate(req.body)) return res.status(422).send("Unprocessable Entity")
+
+    var x = (await db.feature.findFirst({ where: { uuid: req.body.uuid } })) as Feature
+    if (!x) return res.status(404).send("incorrect UUID")
+
     const result = req.body as PostExecutionData
     console.log({ result })
 

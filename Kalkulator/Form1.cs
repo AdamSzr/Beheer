@@ -11,7 +11,7 @@ namespace ProstyKalkulator
         String operand2 = string.Empty;     //String storing second operand
         char operation;                     //Char to store operator
         double result = 0.0;                //Get result
-        private IFeature FLAG_KALKULATOR_OPERACJA_DZIELENIA = Feature.ControledBy("66a9375b-4b1c-4ef9-87f1-b812c57d1bb9");
+        private IFeature FLAG_KALKULATOR_OPERACJA_DZIELENIA = Feature.ControledBy("faa4a222-5470-4de4-9e7a-09460fc304f5");
         public Kalkulator()
         {
             InitializeComponent();

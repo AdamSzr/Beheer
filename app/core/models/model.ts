@@ -26,6 +26,12 @@ export class PostExecutionData {
   createdAt: number
   name?: string
 
+  static validate(obj: any) {
+    if (!obj.name || !obj.uuid || !ExecutionData.validate(obj.execution) || !obj.name) return false
+
+    return true
+  }
+
   static random(feature: Feature) {
     let x = new PostExecutionData()
     x.uuid = feature.uuid
@@ -60,6 +66,11 @@ export class ExecutionData {
     if (x.status === "ERROR") x.errors = faker.git.commitMessage()
 
     return x
+  }
+  static validate(obj: any) {
+    if (!obj || !obj.status || !obj.time || !obj.isMain) return false
+
+    return true
   }
 }
 
