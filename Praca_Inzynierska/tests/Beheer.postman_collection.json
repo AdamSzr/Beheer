@@ -17,7 +17,7 @@
 							"});\r",
 							"\r",
 							"\r",
-							"pm.test(\"Response is eq to item \", function () {\r",
+							"pm.test(\"Response has correct body\", function () {\r",
 							"    const expected = { name:'abcd', value:true }\r",
 							"    const response = pm.response.json()\r",
 							"    pm.expect(response).to.eql(expected)\r",
