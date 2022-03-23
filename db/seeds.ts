@@ -33,7 +33,9 @@ async function saveCustomPostExecutionData(data: PostExecutionData, createdAt: n
 }
 
 const seed = async () => {
-  const featues = await db.feature.findMany({ where: { userId: 1 } })
+  const userEmail = ""
+  const user = await db.user.findFirst({ where: { email: userEmail } })
+  const featues = await db.feature.findMany({ where: { userId: user?.id } })
 
   featues.map(async (element) => {
     for (let index = 0; index < NUMBER_OF_EXECUTION_PER_FEATURE; index++) {
@@ -41,7 +43,7 @@ const seed = async () => {
 
       await saveCustomPostExecutionData(
         postExecData,
-        randomDate(DateAddDays(new Date(), -365), new Date())
+        randomDate(DateAddDays(new Date(), -50), new Date())
       )
     }
   })

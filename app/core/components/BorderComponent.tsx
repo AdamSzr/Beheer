@@ -6,7 +6,6 @@ import deleteFeature from "app/core/mutations/deleteFeature"
 import { Line } from "react-chartjs-2"
 import { ChartData, ChartOptions } from "chart.js"
 import { color } from "app/utils/chart/utils"
-import { CreatePostExecDTOBasedOnStaticData, GetStaticFeatures } from "app/core/models/faker"
 import { DateAddDays } from "app/utils/time"
 import FeatureChart from "app/core/components/feature/featureChart"
 import {
