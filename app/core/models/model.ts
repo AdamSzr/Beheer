@@ -32,10 +32,10 @@ export class PostExecutionData {
     return true
   }
 
-  static random(feature: Feature) {
+  static random(feature: Feature, flagValue?: boolean) {
     let x = new PostExecutionData()
     x.uuid = feature.uuid
-    x.value = feature.value
+    x.value = flagValue ?? feature.value
     x.execution = ExecutionData.random(x.value)
     x.createdAt = DateAddDays(new Date(), RandomInt(-90, 0)).getTime()
 

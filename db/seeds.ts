@@ -1,5 +1,6 @@
 import { ExecutionData, PostExecutionData } from "app/core/models/model"
 import createPostExecutionData from "app/core/mutations/createPostExecutionData"
+import { RandomInt } from "app/utils/base"
 import { DateAddDays, randomDate } from "app/utils/time"
 import db from "./index"
 
@@ -34,13 +35,20 @@ async function saveCustomPostExecutionData(data: PostExecutionData, createdAt: n
 
 const seed = async () => {
   const userEmail = ""
+  const successfullProcentage = 95
+
   const user = await db.user.findFirst({ where: { email: userEmail } })
   const featues = await db.feature.findMany({ where: { userId: user?.id } })
 
-  featues.map(async (element) => {
+  featues.map(async (feature) => {
     for (let index = 0; index < NUMBER_OF_EXECUTION_PER_FEATURE; index++) {
-      const postExecData = PostExecutionData.random(element)
+      let postExecData: PostExecutionData
 
+      if (RandomInt(0, 100) <= successfullProcentage) {
+        postExecData = PostExecutionData.random(feature, true)
+      } else {
+        postExecData = PostExecutionData.random(feature, false)
+      }
       await saveCustomPostExecutionData(
         postExecData,
         randomDate(DateAddDays(new Date(), -50), new Date())
